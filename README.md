@@ -17,8 +17,6 @@ Build and verify a small local app with the **GitHub Copilot desktop app**. No c
 
 **Required:** a GitHub account with a Copilot plan, a supported computer, internet, Node.js 24 LTS with npm, Git, and a browser. Get the desktop app from its [official download page](https://github.com/features/ai/github-app). It is generally available for Windows, macOS, and Linux; this course gives Windows/macOS setup steps. Check your organization's installation/app policy and your plan's usage limits before the workshop.
 
-**Not required:** VS Code, Copilot CLI, GitHub Desktop, WSL, custom agents, MCP servers, Microsoft 365, Azure, or public deployment. Do not install a similarly named product as a substitute for the Copilot desktop app.
-
 The learning loop is **plan → small scaffold → preview → implement one feature → verify → save**. All records are synthetic. A local prototype is not a production system, a compliance claim, or a publicly deployed app.
 
 ### Two different projects
