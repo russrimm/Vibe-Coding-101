@@ -53,7 +53,7 @@ A **terminal** runs commands on your computer. Copilot can run commands through 
 3. **Expected output:** `Hello, future builder`, followed by a new command prompt. This prints a message; it does not create files.
 4. In later code boxes, **Terminal** means run each line separately and wait for the prompt to return. **Copilot chat** means send the whole request in the chat message box. **File content** means save text into a file, not execute it.
 5. Copy with the code box's **Copy** button, then paste using **Ctrl+V** on Windows or **Command+V** on macOS. Do not paste the surrounding Markdown backticks. If Copy fails, select the text and copy manually.
-6. A running preview server intentionally does not return to the prompt. Keep that terminal open. **Ctrl+C** in that terminal stops that command on Windows or macOS; it is not the Mac copy shortcut. Do not close someone else's terminal or process.
+6. **Later, when a preview server is running** (you start one in Lab 02), that terminal intentionally does not return to the prompt. Keep it open. **Ctrl+C** in that terminal stops that command on Windows or macOS; it is not the Mac copy shortcut. Do not close someone else's terminal or process.
 
 **Checkpoint:** you can say which window gets a command, a prompt, or a URL before pasting anything.
 
@@ -130,15 +130,15 @@ Git is a prerequisite for the desktop app. Node.js and npm run the web-developme
 
 **Before you move on:** Git tracks your files; GitHub is the account/hosting service; GitHub Copilot is the AI helper. A GitHub sign-in alone does not prove Copilot works. The reply above is your check.
 
-> These labels were checked against the official documentation on 2026-09-09. Placement may differ in another app build. Consult the [current quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) if labels differ; do not switch to a similarly named Copilot product.
+> These labels were checked against the official documentation on 2026-09-26. Placement may differ in another app build. Consult the [current quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) if labels differ; do not switch to a similarly named Copilot product.
 
 ## Step 4: Make a dedicated learner folder and local session
 
 1. In Windows File Explorer or macOS Finder, create a new folder named **VibeProjects** inside your personal Documents folder.
 2. Inside it, create an **empty** folder named **my-first-vibe-app**. If that name already contains files, choose a new name; do not delete existing work.
-3. In the **Copilot desktop app**, click **+** beside **Sessions**. Under **Add project from**, choose **Local folder or repository**. Select your new empty folder—not this `Vibing101` portal repository.
-4. Click **+** beside **Sessions** again and choose that project under **Start session in**.
-5. In the dropdown below the prompt box, choose a **local** execution location, not a cloud sandbox. The app may offer a new working tree or the local repository, depending on the project. Use one local session for this lab; do not assume it always has a separate branch or isolated files.
+3. In the **Copilot desktop app** sidebar, click **+** next to **Projects**. Under **Add project from**, choose **Local folder or repository**. Select your new empty folder—not this `Vibe-Coding-101` portal repository.
+4. Under **Projects** in the sidebar, find your new learner project and click the **+** next to it to start a session.
+5. In the dropdown below the prompt box, choose a **local** execution location, not a cloud sandbox. The app may offer a new working tree or the local repository, depending on the project. Use one local session for this lab. Each session gets its own workspace, but a local-repository session edits your folder directly—so always check the actual workspace path the next prompt reports.
 6. Choose **Interactive** from the mode dropdown below the prompt field. **Chat prompt:**
 
    ```prompt

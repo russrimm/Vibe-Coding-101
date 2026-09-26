@@ -20,8 +20,9 @@ This lab uses **Microsoft Learn MCP**, a public documentation service. It lets C
 ## Step 1: Understand the connection before adding it
 
 1. Open the [official Microsoft Learn MCP overview](https://learn.microsoft.com/en-us/training/support/mcp). Confirm the endpoint is still the address below, the transport is Streamable HTTP, and the authentication/pricing statements still match.
-2. **HTTP** is the network method used here; **Streamable HTTP** is the MCP connection type. Choose **HTTP**, not a local command or the older SSE transport.
-3. Review these settings:
+2. **HTTP** is the network method used here; **Streamable HTTP** is the MCP connection type. Choose **HTTP** (it may be labeled **Streamable HTTP**), not a local command or the older SSE transport.
+3. **Do not test the URL in a browser.** Opening it directly shows **405 Method Not Allowed**. That is normal: the address expects an MCP client such as Copilot, not a web page.
+4. Review these settings:
 
    | Setting | Value for this exercise |
    | --- | --- |
@@ -31,8 +32,9 @@ This lab uses **Microsoft Learn MCP**, a public documentation service. It lets C
    | Authentication / headers | None; no API key or token |
    | Tools | `microsoft_docs_search`, `microsoft_docs_fetch` |
 
-4. **Expected:** you can explain that this gives the **AI assistant** a documentation tool. It does not add an API to your React app, and it is not proof the assistant will always use the tool.
-5. An organization can restrict available MCP servers. If this endpoint is blocked, ask for approval or use the manual-documentation alternative below. Do not bypass a registry or allowlist policy.
+5. The server may also list a third tool, `microsoft_code_sample_search`. That is expected. This exercise uses only the two documentation tools above, so leave the third one off if your app lets you choose.
+6. **Expected:** you can explain that this gives the **AI assistant** a documentation tool. It does not add an API to your React app, and it is not proof the assistant will always use the tool.
+7. An organization can restrict available MCP servers. If this endpoint is blocked, ask for approval or use the manual-documentation alternative below. Do not bypass a registry or allowlist policy.
 
 ## Step 2: Add the connection in the desktop app
 
@@ -128,6 +130,6 @@ Record: configured server/scope, real search and fetch results, independently ch
 
 Use the matching **Optional checkpoints** and **Evidence and recovery** area in the portal, then **Download evidence**. Leave the MCP checks unchecked if you used the manual alternative or could not confirm removal.
 
-**Source check:** 2026-09-09. Sources: [desktop customization](https://docs.github.com/en/copilot/how-tos/github-copilot-app/customize-github-copilot-app), [shared configuration and tool filtering](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers), [Learn overview](https://learn.microsoft.com/en-us/training/support/mcp), and [Learn developer reference](https://learn.microsoft.com/en-us/training/support/mcp-developer-reference). Tool lists can change; inspect the live discovered tools. Desktop install/trust controls still need to be checked on your app version.
+**Source check:** 2026-09-26. Sources: [desktop customization](https://docs.github.com/en/copilot/how-tos/github-copilot-app/customize-github-copilot-app), [shared configuration and tool filtering](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers), [Learn overview](https://learn.microsoft.com/en-us/training/support/mcp), and [Learn developer reference](https://learn.microsoft.com/en-us/training/support/mcp-developer-reference). Tool lists can change; inspect the live discovered tools. Desktop install/trust controls still need to be checked on your app version.
 
 **Next:** return to [Lab 05](lab-05-next-steps.md) for one small extension, or stop with your saved core app and evidence.

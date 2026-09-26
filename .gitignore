@@ -31,3 +31,6 @@ dist-ssr
 # Browser regression artifacts
 test-results/
 playwright-report/
+
+# Local design-hook cache
+.impeccable/

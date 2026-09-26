@@ -16,6 +16,14 @@ interface MarkdownRendererProps {
   className?: string
   explainTerms?: boolean
   headings?: LessonHeading[]
+  /** Levels added to Markdown headings. Lessons use 1 because the page owns the h1. */
+  headingOffset?: 0 | 1
+}
+
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+function headingTag(level: number, offset: number): HeadingTag {
+  return `h${Math.min(level + offset, 6)}` as HeadingTag
 }
 
 const lessonLinks: Record<string, { step: string; anchor: string }> = {
@@ -33,8 +41,10 @@ function resolveLessonLink(href: string | undefined): string | undefined {
   if (!href || /^[a-z][a-z0-9+.-]*:|^#/i.test(href)) return href
   const [file, fragment] = href.split('#')
   const lesson = file ? lessonLinks[file] : undefined
-  const industry = new URLSearchParams(window.location.search).get('industry')
-  if (lesson && industry) {
+  // Standalone pages such as the playbook link into the recommended Retail lab.
+  const industry =
+    new URLSearchParams(window.location.search).get('industry') ?? 'retail'
+  if (lesson) {
     const anchor = fragment
       ? `${lesson.anchor}-${headingSlug(fragment)}`
       : lesson.anchor
@@ -43,8 +53,10 @@ function resolveLessonLink(href: string | undefined): string | undefined {
     return `?industry=${encodeURIComponent(industry)}&step=${lesson.step}${reader}#${anchor}`
   }
   return href.includes('.md')
-    ? new URL(href, 'https://github.com/russrimm/Vibing101/blob/main/docs/')
-        .href
+    ? new URL(
+        href,
+        'https://github.com/russrimm/Vibe-Coding-101/blob/main/docs/'
+      ).href
     : href
 }
 
@@ -53,8 +65,13 @@ export function MarkdownRenderer({
   className = '',
   explainTerms = true,
   headings,
+  headingOffset = 1,
 }: MarkdownRendererProps) {
   const outline = headings ?? lessonOutline(content)
+  const H1 = headingTag(1, headingOffset)
+  const H2 = headingTag(2, headingOffset)
+  const H3 = headingTag(3, headingOffset)
+  const H4 = headingTag(4, headingOffset)
   const explain = (children: ReactNode) =>
     Children.map(children, (child) =>
       typeof child === 'string' && explainTerms
@@ -107,7 +124,7 @@ export function MarkdownRenderer({
           },
           h1({ children, node }) {
             return (
-              <h2
+              <H1
                 id={
                   outline.find(
                     (item) => item.line === node?.position?.start.line
@@ -117,12 +134,12 @@ export function MarkdownRenderer({
                 className="mb-5 mt-4 text-3xl font-bold"
               >
                 {children}
-              </h2>
+              </H1>
             )
           },
           h2({ children, node }) {
             return (
-              <h3
+              <H2
                 id={
                   outline.find(
                     (item) => item.line === node?.position?.start.line
@@ -132,12 +149,12 @@ export function MarkdownRenderer({
                 className="mb-3 mt-8 border-b border-slate-300 pb-2 text-2xl font-bold dark:border-slate-600"
               >
                 {children}
-              </h3>
+              </H2>
             )
           },
           h3({ children, node }) {
             return (
-              <h4
+              <H3
                 id={
                   outline.find(
                     (item) => item.line === node?.position?.start.line
@@ -147,11 +164,11 @@ export function MarkdownRenderer({
                 className="mb-3 mt-6 text-xl font-bold"
               >
                 {children}
-              </h4>
+              </H3>
             )
           },
           h4({ children }) {
-            return <h5 className="mb-2 mt-4 text-lg font-bold">{children}</h5>
+            return <H4 className="mb-2 mt-4 text-lg font-bold">{children}</H4>
           },
           p({ children }) {
             return <p className="mb-4 leading-relaxed">{explain(children)}</p>

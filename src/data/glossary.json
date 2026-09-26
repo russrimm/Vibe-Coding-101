@@ -18,7 +18,7 @@
     "emoji": "⚡",
     "definition": "A tool that runs a local development server and builds browser files from source. Follow its actual preview URL; the port can change.",
     "example": "When you save a file, Vite shows your changes almost immediately.",
-    "learnMore": "https://vitejs.dev"
+    "learnMore": "https://vite.dev"
   },
   "typescript": {
     "term": "TypeScript",
@@ -74,7 +74,7 @@
     "emoji": "🔧",
     "definition": "Configuration supplied to a program. Environment variables are not automatically secret: VITE_ values can be included in browser-delivered files.",
     "example": "VITE_APP_NAME may hold a public title. Never put passwords or API keys in VITE_ variables, even in an ignored .env.local file.",
-    "learnMore": "https://vitejs.dev/guide/env-and-mode.html"
+    "learnMore": "https://vite.dev/guide/env-and-mode.html"
   },
   "npm": {
     "term": "npm",
@@ -95,7 +95,7 @@
     "emoji": "🕒",
     "definition": "Long-Term Support: a release support policy used by some projects. Not every library has an LTS release.",
     "example": "This lab uses Node.js 24 LTS. Choose compatible stable React and Vite packages and preserve their resolved versions in the lockfile.",
-    "learnMore": "https://nodejs.org/en/about/releases/"
+    "learnMore": "https://nodejs.org/en/about/previous-releases"
   },
   "git": {
     "term": "Git",
@@ -333,14 +333,14 @@
     "emoji": "🔐",
     "definition": "Proving who a user is (sign-in).",
     "example": "Signing in with Microsoft, Google, or email/password.",
-    "learnMore": "https://learn.microsoft.com/security/zero-trust/develop/identity-authentication"
+    "learnMore": "https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization"
   },
   "authorization": {
     "term": "Authorization",
     "emoji": "🛂",
     "definition": "Determining what an authenticated user is allowed to do (permissions).",
     "example": "Admins can delete records; viewers can only read.",
-    "learnMore": "https://learn.microsoft.com/azure/architecture/guide/security/authorization"
+    "learnMore": "https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization"
   },
   "rbac": {
     "term": "role-based access control",
