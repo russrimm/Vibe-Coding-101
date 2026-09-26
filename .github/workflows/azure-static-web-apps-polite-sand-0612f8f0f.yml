@@ -22,6 +22,12 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          # Public, non-secret 1:1 coaching settings. Set them under
+          # Settings > Secrets and variables > Actions > Variables. See docs/coaching-setup.md.
+          VITE_COACHING_BOOKING_URL: ${{ vars.COACHING_BOOKING_URL }}
+          VITE_COACHING_PRICE: ${{ vars.COACHING_PRICE }}
+          VITE_COACHING_DURATION_MINUTES: ${{ vars.COACHING_DURATION_MINUTES }}
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_SAND_0612F8F0F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)

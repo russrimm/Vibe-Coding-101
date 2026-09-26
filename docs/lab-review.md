@@ -1,5 +1,24 @@
 # Beginner curriculum review
 
+## Revalidation, playbook, and 1:1 training — 2026-09-26
+
+**Revalidation against current sources.** Every external URL in the learner docs, glossary, and source was fetched, and the desktop-app claims were rechecked against the current [quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) and session, slash-command, customization, skill, and MCP documentation. Corrections:
+
+- **Project/session labels changed.** The quickstart now says to click **+** next to **Projects** to add a project, then **+** next to that project under **Projects** to start a session. Lab 00 Step 4 previously said **+** beside **Sessions** and **Start session in**; the 2026-09-07 label list below is superseded.
+- Lab 00: local-session wording now reflects that sessions get their own workspace while a local-repository session edits the folder directly; the Ctrl+C preview-server note now says it applies later, in Lab 02.
+- Lab 07: the Learn MCP server can also list `microsoft_code_sample_search`; learners are told to expect it and use only the two documentation tools. The expected browser **405** response is now explained in Step 1, not only in troubleshooting.
+- Lab 03 gained explicit `0` expected output for exit-code checks. Lab 04 gained a `git log -1 --oneline` recovery for a lost commit ID.
+- The repository was renamed to `russrimm/Vibe-Coding-101`: the README clone commands and the portal's GitHub fallback link base were updated. Two 404 glossary links (authentication, authorization) and three redirecting links (Vite, Node releases) were replaced.
+- Still accurate: download page, **Sign in to GitHub**, **Add project from → Local folder or repository**, **Changes**, **Create PR**, `/terminal`, `/reset-allowed-tools`, `/skills reload`, `.github/github-app.yml`, `SKILL.md` locations, **Customize → MCP**, `create-vite@8.3.0` and its flags, and Node.js 24 LTS.
+
+**New learner resources.**
+
+- `docs/vibe-coding-playbook.md`, rendered at `?page=playbook`: the build loop, a four-part request checklist, six reusable prompts, a review checklist, a stuck-recovery table, safety rules, and the learning path. Its lesson links open the portal (Retail when no lab is active).
+- `?page=coaching`: an optional paid 1:1 training page. It links to an external scheduler that takes payment; the portal has no payment code. Its public build-time settings (`VITE_COACHING_BOOKING_URL`, `VITE_COACHING_PRICE`, `VITE_COACHING_DURATION_MINUTES`) are validated, and a missing or non-`https` URL shows a safe "not open yet" state. See [1:1 training setup](coaching-setup.md).
+- Entry points: header **Playbook** and **1:1 training** links, a landing-page **More ways to learn** section, and a **Book 1:1 training** button on the completion stage.
+
+**Results:** lint and build exit 0. New `tests/site-pages.spec.ts` covers settings validation, navigation/back/reload, return to an active lab, playbook lesson links, and light/dark axe plus 320/375/768-pixel overflow checks. The configured booking state was checked manually with a placeholder URL and price. Not performed: a real paid booking, provider configuration, or a hosted deployment with the new repository variables.
+
 ## Local handoff review — 2026-09-09
 
 The final code review identified and corrected two guided-reader resume bugs. A checkpoint or skip-link URL now includes its associated section, so refresh, Back/Forward, and opening the link in a fresh browser context retain the intended reading position. Older auxiliary bookmarks without that query parameter use the saved per-stage position. Navigating to completion before core evidence is confirmed now restores the current stage's saved position instead of recording `lab-04` under the wrong stage.

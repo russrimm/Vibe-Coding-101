@@ -51,11 +51,15 @@
    $LASTEXITCODE
    ```
 
+   **Expected output:** `0`. Any other number means that command failed.
+
 4. In a macOS terminal, immediately after **each** command run:
 
    ```bash
    echo $?
    ```
+
+   **Expected output:** `0`.
 
 5. Record both exit codes and any warnings. Nonzero means the check failed. Use the recovery prompt in [Lab 02](lab-02-build.md); do not remove rules or skip type checking to turn a failure green.
 6. Rerun the failed command and the affected browser checks after fixing it.

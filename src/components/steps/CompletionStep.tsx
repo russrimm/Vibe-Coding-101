@@ -1,5 +1,7 @@
 import type { Industry } from '../../types/industry'
 import { curriculumModules } from '../../data/curriculum'
+import { sitePageHref } from '../../hooks/useSitePage'
+import { followLessonLink } from '../../lib/readerNavigation'
 import CurriculumStage, { stageButtonClass } from './CurriculumStage'
 
 interface CompletionStepProps {
@@ -35,6 +37,13 @@ export default function CompletionStep({
       <button type="button" onClick={onReset} className={stageButtonClass}>
         Choose another use case
       </button>
+      <a
+        href={sitePageHref('coaching')}
+        onClick={followLessonLink}
+        className={stageButtonClass}
+      >
+        Book 1:1 training
+      </a>
     </CurriculumStage>
   )
 }

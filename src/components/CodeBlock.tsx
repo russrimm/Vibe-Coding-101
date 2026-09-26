@@ -14,6 +14,7 @@ const destinations: Record<string, string> = {
   json: 'Configuration - review before saving',
   output: 'Example output - do not run',
   text: 'Text to copy',
+  diagram: 'Diagram - read only, nothing to run',
 }
 
 export default function CodeBlock({ code, language }: CodeBlockProps) {

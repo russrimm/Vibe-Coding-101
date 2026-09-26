@@ -30,6 +30,11 @@ The portal's checklist is your report of evidence, not an automated inspection o
 
 Need a definition? See the [plain-English glossary](GLOSSARY.md).
 
+### Playbook and 1:1 training
+
+- **[Vibe coding playbook](docs/vibe-coding-playbook.md)** (free, also at `?page=playbook` in the portal): the build loop, reusable prompts, a review checklist, fixes for when you get stuck, and safety rules on one page.
+- **1:1 training** (optional, paid, at `?page=coaching`): book a private video session with the author. Booking and payment happen on an external scheduling page; the portal never handles card details. Maintainers turn booking on with the [1:1 training setup guide](docs/coaching-setup.md).
+
 ### Built for your first time
 
 The portal provides **hover, keyboard-focus, and tap explanations** for dotted-underlined terms in lesson prose. Press Escape to dismiss them, or turn them off with **Hide word explanations**. Commands and file contents remain unchanged when copied. Each code box says whether its text belongs in **Copilot chat**, a **terminal**, or a **file**. Chat prompts wrap to fit narrow screens without changing the copied text; commands and file examples keep their original layout.
@@ -54,8 +59,8 @@ These commands run **the portal**, not the app learners build. A fork, cloud acc
 2. **Terminal commands — one line at a time:**
 
    ```text
-   git clone https://github.com/russrimm/Vibing101.git
-   cd Vibing101
+   git clone https://github.com/russrimm/Vibe-Coding-101.git
+   cd Vibe-Coding-101
    npm ci
    npm run dev
    ```
@@ -92,6 +97,8 @@ These commands run **the portal**, not the app learners build. A fork, cloud acc
 - `src/lib/lessonOutline.ts`: module-qualified heading IDs used by both the lesson map and Markdown headings, including Windows line-ending handling.
 - `src/components/LessonReader.tsx` and `src/lib/readerNavigation.ts`: optional guided/full reading, intact section partitions, URL navigation, and keyboard focus. The existing progress store holds optional, backward-compatible per-stage reading positions.
 - `src/components/SetupReadiness.tsx` and `src/lib/setupChecks.ts`: optional local-only tool-output interpretation.
+- `docs/vibe-coding-playbook.md` and `src/components/PlaybookPage.tsx`: the standalone playbook page.
+- `src/components/CoachingPage.tsx`, `src/data/coaching.ts`, and `src/hooks/useSitePage.ts`: the 1:1 training page, its public build-time settings (see `.env.example`), and `?page=` routing.
 - [Curriculum review and release checks](docs/lab-review.md): findings, changes, and outstanding validation.
 
 ### Optional and historical documents

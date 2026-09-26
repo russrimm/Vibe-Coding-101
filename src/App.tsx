@@ -1,19 +1,30 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import IndustrySelector from './components/IndustrySelector'
 import LabWizard from './components/LabWizard'
 import ThemeToggle from './components/ThemeToggle'
 import GlossaryModal from './components/GlossaryModal'
 import AboutModal from './components/AboutModal'
+import PlaybookPage from './components/PlaybookPage'
+import CoachingPage from './components/CoachingPage'
 import { industries } from './types/industry'
 import { useTheme } from './hooks/useTheme'
 import { useLabProgress } from './hooks/useLabProgress'
+import { sitePageHref, useSitePage, type SitePage } from './hooks/useSitePage'
 import { emptyIndustryProgress } from './lib/labProgress'
 import { auxiliaryReaderHref, followLessonLink } from './lib/readerNavigation'
+
+const navButtonClass =
+  'rounded-lg px-2 py-3 text-sm font-semibold hover:bg-slate-100 sm:px-3 dark:hover:bg-slate-700'
+
+function isModifiedClick(event: MouseEvent<HTMLAnchorElement>) {
+  return event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+}
 
 function App() {
   const { theme, toggleTheme, warning: themeWarning } = useTheme()
   const { data, warning, navigate, updateIndustry, resetIndustry } =
     useLabProgress()
+  const { page, openPage, syncPage } = useSitePage()
   const [isGlossaryOpen, setIsGlossaryOpen] = useState(false)
   const [isAboutOpen, setIsAboutOpen] = useState(false)
   const mainRef = useRef<HTMLElement>(null)
@@ -21,8 +32,24 @@ function App() {
   const progress = industry
     ? (data.byIndustry[industry.id] ?? emptyIndustryProgress())
     : null
-  const routeKey = `${industry?.id ?? ''}:${progress?.currentStep ?? ''}`
+  const routeKey = `${page ?? ''}:${industry?.id ?? ''}:${progress?.currentStep ?? ''}`
   const previousRoute = useRef(window.location.hash ? '' : routeKey)
+  const backLabel = industry ? 'Back to your lab' : 'Back to home'
+
+  const pageLink = (target: SitePage, label: string) => (
+    <a
+      href={sitePageHref(target)}
+      aria-current={page === target ? 'page' : undefined}
+      onClick={(event) => {
+        if (isModifiedClick(event)) return
+        event.preventDefault()
+        openPage(target)
+      }}
+      className={`${navButtonClass} ${page === target ? 'text-cyan-800 underline dark:text-cyan-300' : ''}`}
+    >
+      {label}
+    </a>
+  )
 
   useEffect(() => {
     if (previousRoute.current === routeKey) return
@@ -60,32 +87,32 @@ function App() {
           <a
             href="?"
             onClick={(event) => {
-              if (
-                event.metaKey ||
-                event.ctrlKey ||
-                event.shiftKey ||
-                event.altKey
-              )
-                return
+              if (isModifiedClick(event)) return
               event.preventDefault()
               navigate(null)
+              syncPage()
             }}
             className="font-bold hover:text-cyan-700 dark:hover:text-cyan-300"
           >
             Vibe Coding Lab
           </a>
-          <nav aria-label="Lab help" className="flex items-center gap-2">
+          <nav
+            aria-label="Site"
+            className="flex flex-wrap items-center gap-1 sm:gap-2"
+          >
+            {pageLink('playbook', 'Playbook')}
+            {pageLink('coaching', '1:1 training')}
             <button
               type="button"
               onClick={() => setIsAboutOpen(true)}
-              className="rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700"
+              className={navButtonClass}
             >
               About
             </button>
             <button
               type="button"
               onClick={() => setIsGlossaryOpen(true)}
-              className="rounded-lg px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700"
+              className={navButtonClass}
             >
               Glossary
             </button>
@@ -104,7 +131,19 @@ function App() {
       )}
 
       <main id="main-content" ref={mainRef} tabIndex={-1}>
-        {industry && progress ? (
+        {page === 'playbook' ? (
+          <PlaybookPage
+            backLabel={backLabel}
+            onBack={() => openPage(null)}
+            onOpenCoaching={() => openPage('coaching')}
+          />
+        ) : page === 'coaching' ? (
+          <CoachingPage
+            backLabel={backLabel}
+            onBack={() => openPage(null)}
+            onOpenPlaybook={() => openPage('playbook')}
+          />
+        ) : industry && progress ? (
           <LabWizard
             industry={industry}
             progress={progress}
@@ -116,6 +155,7 @@ function App() {
         ) : (
           <IndustrySelector
             onSelectIndustry={(selected) => navigate(selected.id)}
+            onOpenPage={openPage}
             savedProgress={data.byIndustry}
           />
         )}

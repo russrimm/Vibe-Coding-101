@@ -4,12 +4,30 @@ import {
   labHref,
   type IndustryProgress,
 } from '../lib/labProgress'
+import { sitePageHref, type SitePage } from '../hooks/useSitePage'
 import GlossaryTooltip from './GlossaryTooltip'
 
 interface IndustrySelectorProps {
   onSelectIndustry: (industry: Industry) => void
+  onOpenPage: (page: SitePage) => void
   savedProgress: Partial<Record<IndustryType, IndustryProgress>>
 }
+
+const moreWays: { page: SitePage; title: string; body: string; cta: string }[] =
+  [
+    {
+      page: 'playbook',
+      title: 'Vibe coding playbook',
+      body: 'Reusable prompts, a review checklist, fixes for when you get stuck, and the safety rules, all on one page. Free.',
+      cta: 'Open the playbook',
+    },
+    {
+      page: 'coaching',
+      title: '1:1 training with Russ',
+      body: 'Optional paid video session. Set up your tools, build your first app together, or get unstuck on your own project.',
+      cta: 'See 1:1 training',
+    },
+  ]
 
 const suggestedOrder = [...industries].sort(
   (left, right) => Number(right.id === 'retail') - Number(left.id === 'retail')
@@ -17,6 +35,7 @@ const suggestedOrder = [...industries].sort(
 
 export default function IndustrySelector({
   onSelectIndustry,
+  onOpenPage,
   savedProgress,
 }: IndustrySelectorProps) {
   return (
@@ -150,6 +169,43 @@ export default function IndustrySelector({
           )
         })}
       </div>
+      <section aria-labelledby="more-ways" className="mt-12">
+        <h2 id="more-ways" className="mb-2 text-2xl font-bold">
+          More ways to learn
+        </h2>
+        <p className="mb-6 text-slate-700 dark:text-slate-300">
+          Keep the playbook open while you build. Book a session if you would
+          like a person to guide you.
+        </p>
+        <div className="grid gap-5 md:grid-cols-2">
+          {moreWays.map((item) => (
+            <a
+              key={item.page}
+              href={sitePageHref(item.page)}
+              onClick={(event) => {
+                if (
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  event.shiftKey ||
+                  event.altKey
+                )
+                  return
+                event.preventDefault()
+                onOpenPage(item.page)
+              }}
+              className="flex flex-col rounded-xl border border-slate-300 bg-white p-5 text-left transition-colors hover:border-cyan-600 hover:bg-cyan-50 dark:border-slate-600 dark:bg-slate-800 dark:hover:border-cyan-400 dark:hover:bg-slate-700"
+            >
+              <h3 className="text-xl font-bold">{item.title}</h3>
+              <p className="my-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {item.body}
+              </p>
+              <span className="mt-auto font-bold text-cyan-800 dark:text-cyan-300">
+                {item.cta}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
       <footer className="mt-10 text-sm text-slate-600 dark:text-slate-300">
         Created by Russ Rimmerman.{' '}
         <a

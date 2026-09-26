@@ -12,7 +12,7 @@
 
 1. Open **Store Inventory Practice** at the actual local preview URL.
 2. Show the sample list, rejected blank input, status change, combined search/filter, and a successful refresh.
-3. Show your two successful command results and the local commit ID.
+3. Show your two successful command results and the local commit ID. If you closed that terminal, ask Copilot to run `git log -1 --oneline` in your learner workspace. **Expected:** one line that starts with a short commit ID, followed by your commit message.
 4. Explain one change you reviewed or one problem you fixed. If no fix was needed, describe why the empty-name test matters.
 
 ## Step 2: Describe completion honestly
