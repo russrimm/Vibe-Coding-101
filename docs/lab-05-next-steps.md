@@ -19,6 +19,7 @@ You do not need to install everything. Read one module, finish its checks, and s
 | Make Copilot follow project rules and a repeatable review recipe | [Lab 06: Instructions and skills](lab-06-instructions-and-skills.md) | Correct project scope, skill discovery/load, honest evidence table |
 | Give Copilot one public documentation source | [Lab 07: MCP](lab-07-mcp.md) | Real search/fetch calls, supported citations, no private data, connection removal |
 | Improve your local app | Continue with Step 1 below | One small feature and its tests |
+| Go further with specs, automated tests, debugging, pull requests, Autopilot, and custom agents | The [learning path](learning-path.md): Level 2 (Labs 08–10) and Level 3 (Labs 11–13) | A spec, tests you watched fail and pass, a merged pull request with green checks |
 
 The tool modules are readable before core completion, but finishing your first local app before adding tools is recommended. A plugin, skill, or MCP connection is not required to be a successful beginner.
 
@@ -63,4 +64,4 @@ The tool modules are readable before core completion, but finishing your first l
 - **The request grows:** return to one improvement and one measurable result.
 - **You are out of time:** stop at your verified core commit. You already completed the required lab.
 
-**Next:** repeat the same loop in a new learner folder with another [use case](use-cases.md), or stop here.
+**Next:** repeat the same loop in a new learner folder with another [use case](use-cases.md), continue on the [learning path](learning-path.md), or stop here.

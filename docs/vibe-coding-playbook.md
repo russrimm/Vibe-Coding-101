@@ -28,7 +28,7 @@ Every good vibe coding session repeats the same six moves. Small loops are easie
 - ✅ **Pick one small goal.** "A list of notebooks I can add to" is small. "An online store" is not.
 - ✅ **Use made-up data.** Never use real customer, patient, or financial information.
 - ✅ **Know where your work lives.** Check the folder shown for your session before you approve any change.
-- ✅ **Choose the right mode.** Use **Plan** to think things through. Use **Interactive** to build one step at a time. Skip **Autopilot** until you are comfortable reviewing changes.
+- ✅ **Choose the right mode.** Use **Plan** to think things through. Use **Interactive** to build one step at a time. Skip **Autopilot** until you have automated tests and are comfortable reviewing changes ([Lab 12](lab-12-autopilot-and-parallel-sessions.md) shows how to use it safely).
 
 ## A good request has four parts
 
@@ -123,9 +123,39 @@ These rules protect you, your computer, and other people. Follow them every time
 - ⚠️ **Do not publish yet.** Keep beginner apps on your own computer until someone experienced reviews them.
 - ⚠️ **Check facts.** The AI can sound sure and still be wrong. Your tests are the proof, not its confidence.
 
+## Level-up prompts for intermediate and advanced work
+
+Use these after you finish the core lab. Each one comes from the [learning path](learning-path.md).
+
+**7. Write a spec before building** (Lab 08).
+
+```prompt
+Create docs/spec-[feature].md with the headings Goal, Rules, Out of scope, and Acceptance checks. Write each acceptance check as Given / When / Then that I can check in the browser. Do not change any other file.
+```
+
+**8. Test first, red then green** (Lab 09).
+
+```prompt
+Add a failing test for [rule] first. Run the tests and show me the failure, and explain in one sentence why it fails. Do not change the code until I say "continue". Never change a test's expected value to make it pass.
+```
+
+**9. Fix a failing check without weakening it** (Lab 10).
+
+```prompt
+[Command] fails with this error: [paste]. Do not disable or weaken any rule, test, or type check. Explain the cause in two sentences, then propose the smallest code fix and rerun the check.
+```
+
+**10. Brief Autopilot with limits and stop conditions** (Lab 12).
+
+```prompt
+/autopilot Implement the attached spec. Definition of done: [tests written first, all checks exit 0]. Limits: change only [folders]; no new packages; do not change existing tests, lint, or CI settings; do not push or deploy. Stop and explain if a check fails three times or the task needs anything outside these limits.
+```
+
+**Review commands worth remembering:** `/review` reviews your session's changes, `/security-review` looks for vulnerabilities in them, and `/rubber-duck` asks a different model to critique your plan or code. Type `/` in the app to see the commands your version offers.
+
 ## Your learning path
 
-**Core lab (free, about 60–90 minutes after setup):**
+**Level 1 — Beginner, the core lab (free, about 60–90 minutes after setup):**
 
 1. [Set up your tools](lab-00-prerequisites.md)
 2. [Plan a small app](lab-01-plan.md)
@@ -133,11 +163,21 @@ These rules protect you, your computer, and other people. Follow them every time
 4. [Test it and save your work](lab-03-test-and-save.md)
 5. [Explain what you built](lab-04-completion.md)
 
-**Optional next steps:**
+**Level 2 — Intermediate:**
 
-- [Choose one improvement](lab-05-next-steps.md)
 - [Teach Copilot your project rules and make a reusable skill](lab-06-instructions-and-skills.md)
 - [Connect a read-only documentation tool with MCP](lab-07-mcp.md)
+- [Write a spec and manage context](lab-08-specs-and-context.md)
+- [Use tests as guardrails](lab-09-tests-as-guardrails.md)
+- [Debug and recover](lab-10-debug-and-recover.md)
+
+**Level 3 — Advanced:**
+
+- [Branches, pull requests, and AI review](lab-11-branches-prs-and-review.md)
+- [Autopilot, parallel sessions, and sandboxing](lab-12-autopilot-and-parallel-sessions.md)
+- [Custom agents, automations, and your capstone](lab-13-custom-agents-and-automations.md)
+
+Want just one small improvement instead? [Choose one optional next step](lab-05-next-steps.md). See the [whole learning path](learning-path.md) for what each level teaches and how to know you are ready for the next one.
 
 **More help:**
 

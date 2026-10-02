@@ -12,6 +12,7 @@ const destinations: Record<string, string> = {
   bash: 'macOS/Linux terminal - run one line at a time',
   markdown: 'File content - save at the path in this step',
   json: 'Configuration - review before saving',
+  yaml: 'File content (YAML) - save at the path in this step',
   output: 'Example output - do not run',
   text: 'Text to copy',
   diagram: 'Diagram - read only, nothing to run',

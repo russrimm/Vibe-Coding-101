@@ -57,6 +57,20 @@ const aliases: Record<string, keyof typeof glossaryData> = {
   MCP: 'mcpServers',
   'MCP server': 'mcpServers',
   'MCP servers': 'mcpServers',
+  'pull request': 'pullRequest',
+  'pull requests': 'pullRequest',
+  Autopilot: 'autopilot',
+  'local sandbox': 'sandbox',
+  'cloud sandbox': 'sandbox',
+  sandboxing: 'sandbox',
+  'custom agent': 'customAgent',
+  'custom agents': 'customAgent',
+  'context window': 'contextWindow',
+  spec: 'spec',
+  specs: 'spec',
+  regression: 'regression',
+  'unit test': 'unitTests',
+  'unit tests': 'unitTests',
 }
 
 const lookup = new Map(

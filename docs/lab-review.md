@@ -1,5 +1,36 @@
 # Beginner curriculum review
 
+## Learning path, rehearsal screenshots, and Levels 2–3 — 2026-10-02
+
+**Goal:** extend the course from a single beginner lab into a beginner → intermediate → advanced path, with screenshots wherever they can be captured accurately, and re-verify claims along the way.
+
+**New learner content.**
+
+- `docs/learning-path.md` (portal: `?page=path`): three levels, readiness criteria between levels, a skills matrix, a portal tour with screenshots, and safety rules.
+- Level 2: `lab-08-specs-and-context.md` (chat brainstorming, a committed spec with Given/When/Then checks, `@` attachments, `/plan`, `/rubber-duck`, `/context`, `/compact`, `/clear`), `lab-09-tests-as-guardrails.md` (Vitest, refactor to pure functions, characterization tests, red → green, manual mutation check, test-first rename), and `lab-10-debug-and-recover.md` (where errors appear, structured bug reports, a real lint failure, a human-caught bug, Git inspection/restore, `/fork` and `/merge-to-parent`, loop escape).
+- Level 3: `lab-11-branches-prs-and-review.md` (CI workflow, private repository, working-tree session, `/review`, `/security-review`, `/pr-open`, My work, Fix failing checks, `/pr-resolve-comments`, human merge), `lab-12-autopilot-and-parallel-sessions.md` (readiness checklist, `/sandbox on`, Autopilot brief with limits and stop conditions, parallel sessions, `/fork`, `/spawn`, `/fleet`, `/usage`), and `lab-13-custom-agents-and-automations.md` (read-only `.agent.md` with `tools: ["read", "search"]`, a manual local automation, and a capstone plan with a definition of done).
+- The playbook gained four level-up prompts and the full path; Lab 05, Lab 07, the landing page, header navigation, README, and both glossaries link to the path. Seven glossary entries were added (pull request, Autopilot, sandbox, custom agent, context window, spec, regression), plus "unit test" aliases for the existing entry.
+
+**Rehearsal (real, local, Windows 11, Node.js 24.19.0, npm 11.17.0, Git 2.53.0).** In a scratch folder outside the repository, the exact Lab 02 `create-vite@8.3.0` command, `npm install`, `npm run build`, and `npm run lint` exited 0 (React 19, Vite 7.3.6, TypeScript 5.9). Increments 1–4 were then implemented by hand the way a learner would accept them, and each was screenshotted with Playwright/Edge. Findings that changed the docs:
+
+- **npm 11.16+ prints `npm warn allow-scripts`** for packages such as esbuild. It was advisory; install, build, and lint still succeeded. Lab 02 and Lab 09 now explain it and say not to run `npm approve-scripts` just to silence it.
+- **The starter's `react-hooks/set-state-in-effect` lint rule** rejected a very common AI pattern (saving to localStorage in a `useEffect` that also calls `setState`). The page worked and the build passed, but lint failed. Lab 02 Step 5 now asks learners to rerun lint, and Lab 10 Step 3 teaches the correct fix using the real error.
+- **Vitest 5.0.1** installed cleanly with Vite 7.3.6. The red output, green output, and mutation-check output quoted in Lab 09 are copied from the rehearsal.
+- **A bug only a human caught:** the first rename implementation reused "Enter a name before adding a record." while all 10 tests passed. Lab 10 Step 4 uses that screenshot.
+- **`git init` produced a `master` branch** in the rehearsal, so Lab 11 tells learners to check `git branch --show-current` before using `main` in the workflow.
+- The Lab 11 workflow YAML was parsed successfully, and its four commands (`npm ci`, `npm run lint`, `npm test`, `npm run build`) exited 0 locally. `actions/checkout@v7` and `actions/setup-node@v7` were confirmed as the current major tags.
+
+**Documentation verification (fetched 2026-10-02).** Agent sessions (modes, chats, `@`/`#`/`/`, working trees, cloud and local sandboxes, `/security-review`, rubber duck), the full slash-command reference, customization (instructions, skills, MCP, custom agents, plugins), local sandboxing configuration, cloud/local sandbox concepts (local sandboxing off by default; cloud billed by usage; public preview), issues and pull requests in the app (My work, Fix, Fix failing checks, Review, agent merge), automations (triggers, Run in the cloud, Create and run), and custom agent profiles and tool aliases.
+
+**Screenshots.** 17 PNGs in `docs/images/`: 7 of the Lab 02 increments, 3 from Lab 09, 2 from Lab 10 (the Vite overlay path was shortened for privacy), and 5 of this portal. **No screenshots of the Copilot desktop app were added**: its UI changes between versions and capturing a real signed-in session would expose private account data. The labs instead describe controls by their documented labels.
+
+**Portal changes.** `?page=path` with module routing, Previous/Next, focus management, and active-lab preservation; Markdown images resolved through Vite assets; `yaml` code-box label; a landing-page card. New tests check the path registry, navigation, image loading, back-to-lab behavior, accessibility (light/dark), narrow-screen overflow, image alt text, unused images, and broken image links.
+
+**Not performed:** a real GitHub repository, pull request, or Actions run; Autopilot, sandbox, custom-agent, or automation runs inside the desktop app; macOS rehearsal. Each module's source-check line states its own boundary.
+
+**Independent code review fixes.** A review of this change found, and this revision fixed: learning-path links overwrote the active lab's saved reading position (standalone pages no longer change lab positions, and path links keep the reader mode); the new lazily loaded page had no error boundary (it now shows **Reload the page** instead of a blank app); `staticwebapp.config.json` served every response, including `index.html`, as `immutable` for a year, which would strand returning visitors on old asset names (now `no-cache` globally, with `/assets/*` still immutable, since route headers override global headers); a bare "sandbox" glossary alias mislabeled Lab 05's "test environment" sense; Lab 11 mixed `master` and `main`; Lab 12 ran `npm test` in a fresh working tree before `npm ci`; `npm ci` with the dev server running fails with `EPERM` on Windows (also seen in our rehearsal); and Lab 10 assumed a lint failure that earlier labs had already fixed.
+
+**Results:** `npm run lint` and `npm run build` exit 0; all **58/58** Playwright tests pass with installed Microsoft Edge. The learning path loads as a separate ~85 KB chunk; the main chunk is ~611 KB uncompressed (the existing non-fatal size advisory remains). The `staticwebapp.config.json` header change was checked against the Azure Static Web Apps configuration documentation, not against a live deployment.
 ## Revalidation, playbook, and 1:1 training — 2026-09-26
 
 **Revalidation against current sources.** Every external URL in the learner docs, glossary, and source was fetched, and the desktop-app claims were rechecked against the current [quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) and session, slash-command, customization, skill, and MCP documentation. Corrections:

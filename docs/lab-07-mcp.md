@@ -132,4 +132,4 @@ Use the matching **Optional checkpoints** and **Evidence and recovery** area in 
 
 **Source check:** 2026-09-26. Sources: [desktop customization](https://docs.github.com/en/copilot/how-tos/github-copilot-app/customize-github-copilot-app), [shared configuration and tool filtering](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers), [Learn overview](https://learn.microsoft.com/en-us/training/support/mcp), and [Learn developer reference](https://learn.microsoft.com/en-us/training/support/mcp-developer-reference). Tool lists can change; inspect the live discovered tools. Desktop install/trust controls still need to be checked on your app version.
 
-**Next:** return to [Lab 05](lab-05-next-steps.md) for one small extension, or stop with your saved core app and evidence.
+**Next:** continue Level 2 with [Lab 08: Write a spec and manage context](lab-08-specs-and-context.md), return to [Lab 05](lab-05-next-steps.md) for one small extension, or stop with your saved core app and evidence.

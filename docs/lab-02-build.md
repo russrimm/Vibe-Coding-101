@@ -23,6 +23,8 @@
 
 3. **What these do:** the first command downloads/runs the pinned `create-vite` generator and creates its React/TypeScript starter in the current directory (`.`). `--yes` authorizes that npm package prompt only; it is **not** permission for unrestricted Copilot actions. `--no-interactive` avoids generator questions, and `--no-rolldown` selects standard Vite rather than the experimental option. There is deliberately no overwrite flag. Keep `.` as the target—do not replace it with an absolute Windows path; some configured npm shells alter backslashes in those arguments.
 4. `npm install` downloads the starter's dependencies and creates a lockfile. The next two commands check the untouched starter before you change it. **Expected:** the generator reports the project location, installation finishes, build creates `dist`, and build/lint each exit with code **0**. Package counts and timings vary. If anything fails, stop and use the recovery prompt below; do not delete existing files or disable checks.
+
+   > **Yellow `npm warn allow-scripts` lines?** Newer npm versions (11.16 and later) warn when a package wants to run an install script, for example `esbuild`. In our 2026-10-02 rehearsal with npm 11.17.0 this was only a notice: install, build, and lint all still succeeded. Do not run `npm approve-scripts` or change npm settings just to silence it. Ask Copilot to explain the message if you are curious.
 5. **Verify:** the workspace contains `package.json`, `package-lock.json`, `index.html`, and a `src` folder. Its scripts are `dev` (`vite`), `build` (`tsc -b && vite build`), `lint` (`eslint .`), and `preview` (`vite preview`). Use the starter's existing `npm run lint`; do not add another lint tool.
 6. Now use this **chat prompt** to make the first small change:
 
@@ -62,6 +64,16 @@
 2. **Expected output:** Vite says it is ready and prints a `Local:` URL. Use that **exact URL**. The learning portal may already use port 5173; your generated app could use another port.
 3. **Browser action:** open the reported URL in a new browser tab, or use the desktop app's preview if available. Confirm the address refers to your generated app.
 4. **Verify:** see the correct heading and exactly Notebook pack — New and Desk organizer — Done. A chat message saying “server started” is not enough.
+
+   ![The first increment: a "Store Inventory Practice" heading above two records, Notebook pack marked New and Desk organizer marked Done](images/lab-02-increment-1-list.png)
+
+   *Retail example: increment 1 in our rehearsal. Your colors and layout may differ; your heading, sample names, and statuses should match your own use case.*
+
+   If you still see the Vite and React logos with a **count is 0** button, that is the untouched starter. Increment 1 has not been applied yet, or you opened a different app's URL.
+
+   ![The untouched create-vite starter page with Vite and React logos, a "Vite + React" heading, and a "count is 0" button](images/lab-02-starter.png)
+
+   *Retail example: the untouched starter page. Seeing this after increment 1 means the change did not apply.*
 5. Keep the server session alive. If you choose to run it yourself, type `/terminal` in the active desktop session to open its right-panel terminal. Verify the **actual session workspace**, run `npm run dev`, and leave that terminal open. Use a second terminal for later commands.
 
 ## Step 3: Add a record
@@ -85,6 +97,14 @@
 4. Leave Name empty and submit again; then enter only spaces and submit.
 5. **Verify:** neither attempt adds a record. You see a useful error. Do not continue until these checks pass.
 
+   ![After adding Blue notebook: a green "Added Blue notebook." message and three records, with Blue notebook marked New](images/lab-02-increment-2-added.png)
+
+   *Retail example: a successful add in our rehearsal. One new record with status New, and a confirmation message.*
+
+   ![After submitting a name made only of spaces: a red error under the Name field and still only two records](images/lab-02-increment-2-error.png)
+
+   *Retail example: a rejected spaces-only name. An error appears next to the field, and the record count did not grow.*
+
 ## Step 4: Update status and find records
 
 1. **Chat prompt:**
@@ -103,7 +123,14 @@
 2. **Browser action:** change **Blue notebook** from **New** to **In progress**.
 3. Search for **Blue notebook** using lowercase letters. Only that record should remain.
 4. Choose the **Done** filter while keeping that search. Expect **No matching records**.
+
+   ![Search "blue notebook" with the Done filter shows the message "No matching records"](images/lab-02-increment-3-no-match.png)
+
+   *Retail example: search and filter working together in our rehearsal. The controls stay usable.*
+
 5. Change the filter to **In progress**. Expect the record to return.
+
+   ![Search "blue notebook" with the In progress filter shows only the Blue notebook record](images/lab-02-increment-3-filtered.png)
 6. Clear the search and choose **All**. Expect all three records. Confirm the two original statuses did not change.
 
 ## Step 5: Save records in this browser
@@ -127,7 +154,13 @@
 2. **Browser action:** confirm **Blue notebook** is still present with **In progress**. If development reloads earlier in-memory work, add it once and set its status again.
 3. Refresh the browser tab using its reload button.
 4. **Verify:** all three records remain, the changed status remains, and the seed records are not duplicated.
-5. Notice the storage limit: this data belongs to one browser profile and one **origin** (scheme, host, and port). Another browser, `127.0.0.1` instead of `localhost`, or a different port has different storage. Clearing site data or ending a private-browsing session can remove it. It is not shared across devices and is not protected storage for secrets.
+
+   ![After a refresh: Notebook pack New, Desk organizer Done, and Blue notebook In progress, each with a status dropdown](images/lab-02-increment-4-after-reload.png)
+
+   *Retail example: after refreshing the page in our rehearsal. Three records, no duplicates, and the added record kept In progress.*
+
+5. Run `npm run lint` again. In our rehearsal, a common AI-generated pattern (saving inside a React `useEffect` that also sets state) **failed lint** with `react-hooks/set-state-in-effect`, even though the page worked. If you see that rule, ask Copilot to save in the same event handler that changes the records instead of in an effect. Do not disable the rule. [Lab 10](lab-10-debug-and-recover.md) explains this real error in detail.
+6. Notice the storage limit: this data belongs to one browser profile and one **origin** (scheme, host, and port). Another browser, `127.0.0.1` instead of `localhost`, or a different port has different storage. Clearing site data or ending a private-browsing session can remove it. It is not shared across devices and is not protected storage for secrets.
 
 ## Step 6: Recover from a failure without rebuilding everything
 

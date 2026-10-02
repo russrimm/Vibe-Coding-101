@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+} from 'react'
 import IndustrySelector from './components/IndustrySelector'
 import LabWizard from './components/LabWizard'
 import ThemeToggle from './components/ThemeToggle'
@@ -6,12 +13,16 @@ import GlossaryModal from './components/GlossaryModal'
 import AboutModal from './components/AboutModal'
 import PlaybookPage from './components/PlaybookPage'
 import CoachingPage from './components/CoachingPage'
+import LazyPageBoundary from './components/LazyPageBoundary'
 import { industries } from './types/industry'
 import { useTheme } from './hooks/useTheme'
 import { useLabProgress } from './hooks/useLabProgress'
 import { sitePageHref, useSitePage, type SitePage } from './hooks/useSitePage'
 import { emptyIndustryProgress } from './lib/labProgress'
 import { auxiliaryReaderHref, followLessonLink } from './lib/readerNavigation'
+
+// The intermediate and advanced modules are large; load them only when opened.
+const PathPage = lazy(() => import('./components/PathPage'))
 
 const navButtonClass =
   'rounded-lg px-2 py-3 text-sm font-semibold hover:bg-slate-100 sm:px-3 dark:hover:bg-slate-700'
@@ -100,6 +111,7 @@ function App() {
             aria-label="Site"
             className="flex flex-wrap items-center gap-1 sm:gap-2"
           >
+            {pageLink('path', 'Learning path')}
             {pageLink('playbook', 'Playbook')}
             {pageLink('coaching', '1:1 training')}
             <button
@@ -131,7 +143,19 @@ function App() {
       )}
 
       <main id="main-content" ref={mainRef} tabIndex={-1}>
-        {page === 'playbook' ? (
+        {page === 'path' ? (
+          <LazyPageBoundary>
+            <Suspense
+              fallback={
+                <p role="status" className="mx-auto max-w-4xl px-4 py-10">
+                  Loading the learning path…
+                </p>
+              }
+            >
+              <PathPage backLabel={backLabel} onBack={() => openPage(null)} />
+            </Suspense>
+          </LazyPageBoundary>
+        ) : page === 'playbook' ? (
           <PlaybookPage
             backLabel={backLabel}
             onBack={() => openPage(null)}

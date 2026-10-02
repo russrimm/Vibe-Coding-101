@@ -97,4 +97,23 @@ In the portal, dotted-underlined words also have definitions on hover, keyboard 
 - **VS Code / CLI / WSL:** an editor / a text-command interface / a Windows Linux environment. None is the Copilot desktop app; none is required for this course.
 - **CI/CD:** configured automation for checking and delivering changes. A successful pipeline does not replace app-specific acceptance testing.
 
+## Intermediate and advanced terms (learning path Levels 2–3)
+
+- **Spec:** short for specification. A short file that says what a feature must do, what is out of scope, and how to check it. [Lab 08](docs/lab-08-specs-and-context.md) writes one.
+- **Context window:** the limited amount of text an AI model can consider at once, including your messages, attached files, and tool output. `/context` shows how full a session is; `/compact` summarizes older parts.
+- **Unit test:** a small automated check of one function. [Lab 09](docs/lab-09-tests-as-guardrails.md) adds Vitest and practices red → green.
+- **Red → green:** write a test, watch it fail for the right reason (red), then change the code until it passes (green).
+- **Mutation testing:** breaking code on purpose to confirm a test notices. Lab 09 does a tiny manual version.
+- **Refactor:** changing how code is organized without changing what the user sees.
+- **Regression:** something that used to work and is now broken because of a recent change.
+- **Stack trace:** the list of `at ...` lines under an error showing which code was running. Copy it into bug reports; start reading at the first red line.
+- **Pull request (PR):** a GitHub page proposing to merge one branch into another, with review comments and automated checks. [Lab 11](docs/lab-11-branches-prs-and-review.md) opens one.
+- **Merge conflict:** two branches changed the same lines differently. A person must decide the result; ask Copilot to explain both sides before resolving it.
+- **Autopilot:** a session mode where the agent works without waiting for you between steps. Use it only with tests, a spec, and a saved commit. [Lab 12](docs/lab-12-autopilot-and-parallel-sessions.md) covers it.
+- **Local sandbox:** an operating-system boundary that limits which files, networks, and credentials agent-run commands can reach. In public preview in the Copilot app; off by default.
+- **Cloud sandbox:** a session that runs entirely on GitHub-hosted computers. Billed based on usage.
+- **Fork (session):** `/fork` copies the current Copilot session so you can try another approach. This is different from forking a GitHub repository.
+- **Agent profile (`.agent.md`):** the Markdown file that defines a custom agent: a description, instructions, and an optional `tools` list. [Lab 13](docs/lab-13-custom-agents-and-automations.md) creates a read-only one.
+- **Automation:** a saved prompt in the Copilot app that runs manually, on a schedule, or when issues or pull requests change. Each run uses your plan's allowance.
+
 **Next:** [Start Lab 00](docs/lab-00-prerequisites.md).

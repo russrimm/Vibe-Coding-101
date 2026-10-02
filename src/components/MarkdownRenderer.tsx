@@ -10,6 +10,20 @@ import {
   type LessonHeading,
 } from '../lib/lessonOutline'
 import { followLessonLink, readingMode } from '../lib/readerNavigation'
+import { pathHref, pathModuleMeta } from '../data/learningPathModules'
+import { sitePageHref } from '../hooks/useSitePage'
+
+/** Screenshots live beside the Markdown in docs/images so GitHub renders them too. */
+const docImages = import.meta.glob<string>('../../docs/images/*.png', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+function resolveImage(src: string | undefined): string | undefined {
+  const match = src ? /^(?:\.\/)?images\/([\w.-]+\.png)$/.exec(src) : null
+  return match ? docImages[`../../docs/images/${match[1]}`] : src
+}
 
 interface MarkdownRendererProps {
   content: string
@@ -41,6 +55,14 @@ function resolveLessonLink(href: string | undefined): string | undefined {
   if (!href || /^[a-z][a-z0-9+.-]*:|^#/i.test(href)) return href
   const [file, fragment] = href.split('#')
   const lesson = file ? lessonLinks[file] : undefined
+  const pathModule = pathModuleMeta.find((module) => module.file === file)
+  if (pathModule)
+    return pathHref(
+      pathModule.id,
+      fragment ? `${pathModule.id}-${headingSlug(fragment)}` : undefined
+    )
+  if (file === 'learning-path.md') return pathHref()
+  if (file === 'vibe-coding-playbook.md') return sitePageHref('playbook')
   // Standalone pages such as the playbook link into the recommended Retail lab.
   const industry =
     new URLSearchParams(window.location.search).get('industry') ?? 'retail'
@@ -187,7 +209,8 @@ export function MarkdownRenderer({
               <a
                 href={target}
                 onClick={
-                  target?.startsWith('?industry=')
+                  target?.startsWith('?industry=') ||
+                  /[?&]page=/.test(target ?? '')
                     ? followLessonLink
                     : undefined
                 }
@@ -252,6 +275,17 @@ export function MarkdownRenderer({
           hr() {
             return (
               <hr className="my-6 border-slate-300 dark:border-slate-600" />
+            )
+          },
+          img({ src, alt, title }) {
+            return (
+              <img
+                src={resolveImage(typeof src === 'string' ? src : undefined)}
+                alt={alt ?? ''}
+                title={title}
+                loading="lazy"
+                className="my-2 block h-auto max-w-full rounded-lg border border-slate-300 shadow-sm dark:border-slate-600"
+              />
             )
           },
         }}

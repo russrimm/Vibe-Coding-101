@@ -16,6 +16,12 @@ interface IndustrySelectorProps {
 const moreWays: { page: SitePage; title: string; body: string; cta: string }[] =
   [
     {
+      page: 'path',
+      title: 'Learning path: beginner to advanced',
+      body: 'Three levels on the same practice app: your first app, then specs, tests, and debugging, then pull requests, Autopilot, and custom agents. Free.',
+      cta: 'See all levels',
+    },
+    {
       page: 'playbook',
       title: 'Vibe coding playbook',
       body: 'Reusable prompts, a review checklist, fixes for when you get stuck, and the safety rules, all on one page. Free.',
@@ -83,8 +89,10 @@ export default function IndustrySelector({
           instructions, reusable{' '}
           <GlossaryTooltip term="skills">skills</GlossaryTooltip>, and a
           read-only <GlossaryTooltip term="mcpServers">MCP</GlossaryTooltip>{' '}
-          documentation connection in separate optional walkthroughs. Hover,
-          focus, or tap dotted-underlined words for plain-English explanations.
+          documentation connection in separate optional walkthroughs. When you
+          are ready, the learning path continues with specs, automated tests,
+          pull requests, Autopilot, and custom agents. Hover, focus, or tap
+          dotted-underlined words for plain-English explanations.
         </p>
         <p className="mt-3 text-sm">
           <a
@@ -174,10 +182,11 @@ export default function IndustrySelector({
           More ways to learn
         </h2>
         <p className="mb-6 text-slate-700 dark:text-slate-300">
-          Keep the playbook open while you build. Book a session if you would
-          like a person to guide you.
+          Finished your first app? Keep going on the learning path. Keep the
+          playbook open while you build. Book a session if you would like a
+          person to guide you.
         </p>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {moreWays.map((item) => (
             <a
               key={item.page}

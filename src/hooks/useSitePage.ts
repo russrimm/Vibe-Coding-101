@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { subscribeToReaderLocation } from '../lib/readerNavigation'
 
-export const SITE_PAGES = ['playbook', 'coaching'] as const
+export const SITE_PAGES = ['path', 'playbook', 'coaching'] as const
 export type SitePage = (typeof SITE_PAGES)[number]
 
 export function pageFromSearch(search: string): SitePage | null {
@@ -13,6 +13,7 @@ export function sitePageHref(page: SitePage | null): string {
   const url = new URL(window.location.href)
   if (page) url.searchParams.set('page', page)
   else url.searchParams.delete('page')
+  url.searchParams.delete('module')
   url.hash = ''
   return `${url.pathname}${url.search}`
 }
@@ -33,6 +34,8 @@ export function useSitePage() {
     const href = sitePageHref(next)
     if (href !== `${window.location.pathname}${window.location.search}`) {
       window.history.pushState(null, '', href)
+      // The learning path reads its module from the URL; announce the change.
+      if (next === 'path') window.dispatchEvent(new PopStateEvent('popstate'))
     }
     setPage(next)
   }
