@@ -15,6 +15,20 @@ Build and verify a small local app with the **GitHub Copilot desktop app**. No c
 7. Optionally [add project instructions and create one review skill](docs/lab-06-instructions-and-skills.md).
 8. Optionally [connect, verify, and remove a public documentation MCP server](docs/lab-07-mcp.md).
 
+### Keep going: beginner to advanced
+
+The **[learning path](docs/learning-path.md)** (also at `?page=path` in the portal) continues with the same practice app across three levels. Each module ends with checks you can run yourself.
+
+![The portal's learning path page with a table of the Beginner, Intermediate, and Advanced levels, who each is for, what you will be able to do, and the time needed](docs/images/portal-learning-path.png)
+
+| Level | Modules |
+| --- | --- |
+| **1. Beginner** | Labs 00–04 above: your first working, tested, saved app |
+| **2. Intermediate** | Labs 06–07 above, then [08: specs and context](docs/lab-08-specs-and-context.md), [09: tests as guardrails](docs/lab-09-tests-as-guardrails.md), [10: debug and recover](docs/lab-10-debug-and-recover.md) |
+| **3. Advanced** | [11: branches, pull requests, and AI review](docs/lab-11-branches-prs-and-review.md), [12: Autopilot, parallel sessions, and sandboxing](docs/lab-12-autopilot-and-parallel-sessions.md), [13: custom agents, automations, and your capstone](docs/lab-13-custom-agents-and-automations.md) |
+
+**Screenshots show what to expect.** Lab 02 shows each increment of the practice app as it looked in a real rehearsal, and Labs 09–10 show real test failures, error overlays, and a bug that only a human caught. Screenshots are of the learner app and this portal; this course does not include screenshots of the Copilot desktop app itself, whose layout changes between versions.
+
 **Required:** a GitHub account with a Copilot plan, a supported computer, internet, Node.js 24 LTS with npm, Git, and a browser. Get the desktop app from its [official download page](https://github.com/features/ai/github-app). It is generally available for Windows, macOS, and Linux; this course gives Windows/macOS setup steps. Check your organization's installation/app policy and your plan's usage limits before the workshop.
 
 The learning loop is **plan → small scaffold → preview → implement one feature → verify → save**. All records are synthetic. A local prototype is not a production system, a compliance claim, or a publicly deployed app.
@@ -88,7 +102,9 @@ These commands run **the portal**, not the app learners build. A fork, cloud acc
 
 ### Where the curriculum lives
 
-- `docs/lab-00-prerequisites.md` through `docs/lab-07-mcp.md`: eight canonical modules, also rendered in the portal; 06–07 are optional instructions/skills and MCP walkthroughs.
+- `docs/lab-00-prerequisites.md` through `docs/lab-07-mcp.md`: eight canonical wizard modules, also rendered in the portal; 06–07 are optional instructions/skills and MCP walkthroughs.
+- `docs/learning-path.md` and `docs/lab-08-*.md` through `docs/lab-13-*.md`: the intermediate and advanced learning path, rendered at `?page=path` (`?page=path&module=lab-08` for one module) by `src/components/PathPage.tsx`. Register new path modules in `src/data/learningPathModules.ts` (metadata, safe for Node tests) and `src/data/learningPath.ts` (Markdown imports).
+- `docs/images/`: screenshots referenced by relative Markdown paths such as `images/lab-02-increment-1-list.png`. GitHub renders them directly; `MarkdownRenderer` resolves the same paths to bundled assets. Every image needs descriptive alt text and must be referenced (`tests/documentation.spec.ts` checks both).
 - `src/data/curriculum.ts`: imports those modules and adapts Retail examples for the selected use case.
 - `src/types/industry.ts`: six small use-case definitions.
 - `src/data/wizardChecklist.ts`: checkpoint IDs, labels, and evidence descriptions.

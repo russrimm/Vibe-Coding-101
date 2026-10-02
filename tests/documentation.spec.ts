@@ -20,7 +20,7 @@ test('learner documentation has no broken local Markdown links', () => {
       if (!href || /^(?:[a-z]+:|#|\/)/i.test(href)) continue
       const path = href.split('#')[0]?.split('?')[0]
       if (
-        path?.endsWith('.md') &&
+        (path?.endsWith('.md') || path?.endsWith('.png')) &&
         !existsSync(resolve(dirname(file), decodeURIComponent(path)))
       ) {
         broken.push(`${file}: ${href}`)
@@ -30,12 +30,33 @@ test('learner documentation has no broken local Markdown links', () => {
   expect(broken).toEqual([])
 })
 
+test('every screenshot has descriptive alt text and is used by the docs', () => {
+  const root = process.cwd()
+  const docs = readdirSync(resolve(root, 'docs'))
+    .filter((file) => file.endsWith('.md'))
+    .map((file) => readFileSync(resolve(root, 'docs', file), 'utf8'))
+    .concat(readFileSync(resolve(root, 'README.md'), 'utf8'))
+    .join('\n')
+  const images = [...docs.matchAll(/!\[([^\]]*)\]\(([^)\s]+)\)/g)]
+  expect(images.length).toBeGreaterThan(0)
+  for (const [, alt, src] of images) {
+    expect(alt?.trim().length ?? 0, `${src} needs alt text`).toBeGreaterThan(15)
+  }
+  const referenced = new Set(
+    images.map(([, , src]) => src?.split('/').pop() ?? '')
+  )
+  const unused = readdirSync(resolve(root, 'docs', 'images')).filter(
+    (file) => !referenced.has(file)
+  )
+  expect(unused).toEqual([])
+})
+
 test('every beginner module has learning goals, observable checks, recovery and a next step', () => {
   const directory = resolve(process.cwd(), 'docs')
   const modules = readdirSync(directory).filter((file) =>
     /^lab-\d{2}-/.test(file)
   )
-  expect(modules.length).toBeGreaterThanOrEqual(8)
+  expect(modules.length).toBeGreaterThanOrEqual(14)
   for (const file of modules) {
     const content = readFileSync(resolve(directory, file), 'utf8')
     const outline = lessonOutline(content)
@@ -58,7 +79,7 @@ test('every beginner module has learning goals, observable checks, recovery and 
           match[2]?.trim(),
           `${file}: every copyable block needs a destination label`
         ).toMatch(
-          /^(prompt|terminal|powershell|bash|markdown|json|output|text)$/
+          /^(prompt|terminal|powershell|bash|markdown|json|yaml|output|text|diagram)$/
         )
       } else if (match[1][0] === fence[0] && match[1].length >= fence.length) {
         fence = undefined

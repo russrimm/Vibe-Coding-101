@@ -33,6 +33,10 @@ function applyLocation(data: LabProgress): LabProgress {
   const params = new URLSearchParams(window.location.search)
   const id = params.get('industry')
   if (!isIndustryId(id)) return { ...data, activeIndustry: null }
+  // Standalone pages (playbook, learning path) keep the lab in the URL only so
+  // "Back to your lab" works; their anchors and reader settings are not lab positions.
+  if (params.has('page'))
+    return data.activeIndustry === id ? data : { ...data, activeIndustry: id }
   const progress = data.byIndustry[id] ?? emptyIndustryProgress()
   const step = params.get('step')
   const rejectedStep =

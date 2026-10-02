@@ -39,9 +39,17 @@ export function personalizeCurriculum(content: string, industry: Industry) {
     ],
   ]
 
-  return replacements.reduce(
-    (result, [original, replacement]) =>
-      result.split(original).join(replacement),
-    content
-  )
+  return content
+    .split('\n')
+    .map((line) =>
+      // Screenshots and their captions show the Retail rehearsal, so keep them literal.
+      /^\s*(?:!\[|\*Retail example:)/.test(line)
+        ? line
+        : replacements.reduce(
+            (result, [original, replacement]) =>
+              result.split(original).join(replacement),
+            line
+          )
+    )
+    .join('\n')
 }

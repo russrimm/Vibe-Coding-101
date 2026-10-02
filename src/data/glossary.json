@@ -645,5 +645,54 @@
     "definition": "A number returned by a finished command. Usually 0 means success and a nonzero number means failure.",
     "example": "Record exit code 0 for both npm run build and npm run lint, after reading their output.",
     "learnMore": ""
+  },
+  "pullRequest": {
+    "term": "Pull request",
+    "emoji": "🔀",
+    "definition": "A GitHub page that proposes merging one branch into another. People, AI reviewers, and automated checks can comment before anyone merges.",
+    "example": "Open a pull request for the rename feature, wait for checks to pass, read the review, then decide whether to merge.",
+    "learnMore": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+  },
+  "autopilot": {
+    "term": "Autopilot",
+    "emoji": "🛫",
+    "definition": "A Copilot app session mode where the agent writes code, runs commands, and iterates without waiting for you between steps. You still review the result.",
+    "example": "Use Autopilot only after you have passing tests, a written spec, a saved commit, and clear stop conditions.",
+    "learnMore": "https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions#choosing-a-session-mode"
+  },
+  "sandbox": {
+    "term": "Sandbox",
+    "emoji": "📦",
+    "definition": "A restricted place to run commands. A local sandbox limits which files, networks, and credentials agent-run tools can reach; a cloud sandbox runs the whole session on GitHub's computers.",
+    "example": "Type /sandbox on in a local session before letting the agent work more independently.",
+    "learnMore": "https://docs.github.com/en/copilot/how-tos/github-copilot-app/configure-local-sandboxing"
+  },
+  "customAgent": {
+    "term": "Custom agent",
+    "emoji": "🧑‍🔧",
+    "definition": "A Markdown agent profile that gives Copilot a focused role, its own instructions, and optionally a limited set of tools.",
+    "example": "A test-reviewer agent with only read and search tools can review tests but cannot edit files.",
+    "learnMore": "https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents"
+  },
+  "contextWindow": {
+    "term": "Context window",
+    "emoji": "🪟",
+    "definition": "The limited amount of text an AI model can consider at once, including your messages, attached files, tool output, and its own replies.",
+    "example": "Type /context to see how full the session is. Attach the one file that matters instead of the whole project.",
+    "learnMore": "https://docs.github.com/en/copilot/reference/github-copilot-app-reference/slash-commands"
+  },
+  "spec": {
+    "term": "Spec",
+    "emoji": "📐",
+    "definition": "Short for specification: a written description of what a feature must do, what it must not do, and how you will check it.",
+    "example": "A rename spec lists the name rules, the keyboard behavior, and three checks you can run in the browser.",
+    "learnMore": ""
+  },
+  "regression": {
+    "term": "Regression",
+    "emoji": "↩️",
+    "definition": "Something that used to work and is now broken, usually because of a recent change.",
+    "example": "If adding rename made the Add form accept blank names again, that would be a regression. A saved test catches it.",
+    "learnMore": ""
   }
 }
