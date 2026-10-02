@@ -134,14 +134,14 @@ test('lesson map links to real headings, supports reload and never completes a c
   }
   await map
     .getByRole('link', {
-      name: 'Step 2: Check Node.js, npm, and Git',
+      name: 'Step 5: Check Node.js, npm, and Git',
       exact: true,
     })
     .click()
-  await expect(page).toHaveURL(/#lab-00-step-2-check-nodejs-npm-and-git$/)
+  await expect(page).toHaveURL(/#lab-00-step-5-check-nodejs-npm-and-git$/)
   await page.reload()
   await expect(
-    page.locator('#lab-00-step-2-check-nodejs-npm-and-git')
+    page.locator('#lab-00-step-5-check-nodejs-npm-and-git')
   ).toBeFocused()
   await expect(page.getByRole('checkbox', { checked: true })).toHaveCount(0)
 })

@@ -11,7 +11,7 @@
 
 ## Step 1: Run this acceptance test
 
-1. Open the generated app at its **actual preview URL**, not the learning portal.
+1. Open the generated app at its **actual preview URL**, not the learning portal. If the page does not load, ask Copilot: "Start the dev server again in this workspace and show me the Local URL."
 2. Choose **All** and clear the search. Keep one **Blue notebook** test record; reuse it if you added it earlier rather than adding a duplicate.
 3. Run each row in order. Record **Pass** or **Fail**, plus what you observed, in your session notes. A failed row stays unchecked in the portal.
 
@@ -37,53 +37,40 @@
 
 ## Step 3: Run build and lint
 
-1. Keep the preview server running. In the **same desktop session**, ask Copilot to run the following, or use a **second terminal** in its actual working directory:
+1. Keep the preview server running. In the **same desktop session**, send this **Copilot chat** prompt:
 
-   ```terminal
-   npm run build
-   npm run lint
+   ```prompt
+   Run npm run build, then npm run lint, in this session's working directory.
+   Keep the dev server running. Show me the full output of each command and
+   its exit code. Do not change any files, and do not try to fix anything yet.
    ```
 
-2. **Expected:** each command finishes with **exit code 0**. Build performs TypeScript checks and creates `dist`; lint checks source files. Lint may print little or nothing on success. Read the output, not just Copilot's summary.
-3. If running commands yourself in PowerShell, immediately after **each** command run:
-
-   ```powershell
-   $LASTEXITCODE
-   ```
-
-   **Expected output:** `0`. Any other number means that command failed.
-
-4. In a macOS terminal, immediately after **each** command run:
-
-   ```bash
-   echo $?
-   ```
-
-   **Expected output:** `0`.
-
-5. Record both exit codes and any warnings. Nonzero means the check failed. Use the recovery prompt in [Lab 02](lab-02-build.md); do not remove rules or skip type checking to turn a failure green.
-6. Rerun the failed command and the affected browser checks after fixing it.
+2. **Expected:** Copilot reports **exit code 0** for each command. Build performs TypeScript checks and creates `dist`; lint checks source files. Lint may print little or nothing on success. Read the output Copilot shows, not just its summary.
+3. **What is an exit code?** Every command ends with a number. `0` means success. Any other number means that command failed, even if the output looks harmless.
+4. Record both exit codes and any warnings. Nonzero means the check failed. Use the recovery prompt in [Lab 02](lab-02-build.md); do not let Copilot remove rules or skip type checking to turn a failure green.
+5. After a fix, ask Copilot to rerun the failed command, and repeat the affected browser checks yourself.
 
 > A successful build is not proof that every button works, and successful browser clicks are not proof the project builds. You need both.
 
 ## Step 4: Review the files you will save
 
-1. Click **Changes** above the prompt box in the desktop app. A **diff** shows what was added and removed. If that view is unavailable, ask Copilot to show the changed files, or open `/terminal` in the active session and run:
+1. Click **Changes** above the prompt box in the desktop app. A **diff** shows what was added and removed. If that view is unavailable, send this **Copilot chat** prompt:
 
-   ```terminal
-   git status --short
-   git diff --stat
-   git diff
+   ```prompt
+   Show me every file that changed or was added in this learner project since
+   the last commit (or since the folder was created, if there are no commits).
+   For each file, show the diff or full contents of new files, and explain in
+   one sentence what it is for. Do not change, stage, or delete anything.
    ```
 
-2. **Expected:** only your learner app's intended files changed. New/untracked files do not appear in plain `git diff`; inspect their contents too, either in the app or by asking Copilot to show each one.
+2. **Expected:** only your learner app's intended files changed. New files count too; make sure you see their contents, in the app or in Copilot's reply.
 3. Ask Copilot to explain anything unfamiliar. Confirm the working validation and test scripts were not removed.
 4. Check for passwords, API keys, personal data, generated files, and unrelated changes. Include `package-lock.json`; exclude `node_modules`, `dist`, and private `.env` files with `.gitignore`. Frontend `VITE_` variables are public to the browser, not a place for secrets.
 
 ## Step 5: Make an intentional local checkpoint
 
 1. A **Git commit** records a snapshot locally. It does **not** push to GitHub, back up the computer, or deploy the app.
-2. If Git says this is not a repository, confirm the learner folder again, then ask Copilot to run `git init` **only there**. If Git requests an author identity, use the instructions below before retrying. Do not initialize a repository inside another project or change global settings by default.
+2. If Copilot reports that this folder is not a Git repository yet, confirm the learner folder again, then let Copilot set one up (`git init`) **only there**. If Git asks who you are, use the instructions below before retrying. Do not let Copilot initialize a repository inside another project or change global settings.
 3. **Chat prompt:**
 
    ```prompt
@@ -95,12 +82,12 @@
    Do not push, publish, deploy, or merge into another branch.
    ```
 
-4. Review the staged content (`git diff --cached`), then explicitly approve the local commit with message **feat: build local practice tracker**. This is your permission to save, not to publish. Do not choose **Create PR** for this local-only checkpoint.
-5. **Terminal commands, or ask Copilot to run and show their output:**
+4. Review the staged content Copilot shows you, then explicitly approve the local commit with message **feat: build local practice tracker**. This is your permission to save, not to publish. Do not choose **Create PR** for this local-only checkpoint.
+5. **Copilot chat:**
 
-   ```terminal
-   git log -1 --oneline
-   git status --short
+   ```prompt
+   Show me the latest commit (git log -1 --oneline) and the current
+   git status --short output. Do not change anything.
    ```
 
 6. **Verify:** the latest commit has your intended message. Status is empty for a fully committed learner app, or every remaining file is understood and intentionally uncommitted. Record the commit ID and the actual workspace path.
@@ -109,16 +96,16 @@
 ### If Git asks who you are
 
 1. This identity labels your commits; it is **not** your password or a sign-in command. In your browser, open **GitHub → Settings → Emails**. If you want to keep your address private, copy the exact GitHub-provided no-reply address shown there. Do not invent an address from your username.
-2. In the terminal for the confirmed learner repository, replace the two placeholders below with your approved name and email. Keep the double quotes. Run one line at a time:
+2. Send this **Copilot chat** prompt, replacing the two bracketed parts with your approved name and email:
 
-   ```terminal
-   git config --local user.name "YOUR CHOSEN NAME"
-   git config --local user.email "YOUR APPROVED EMAIL OR GITHUB NO-REPLY ADDRESS"
-   git config --local --get user.name
-   git config --local --get user.email
+   ```prompt
+   Set the Git author identity for this learner repository only (use --local,
+   not --global). Name: [YOUR CHOSEN NAME]. Email: [YOUR APPROVED EMAIL OR
+   GITHUB NO-REPLY ADDRESS]. Then read both values back and show me the output.
+   Do not change any other Git settings.
    ```
 
-3. **Expected:** the last two commands print the values you chose. Do not leave the placeholder words in your configuration. `--local` limits these settings to this repository, not every project on your computer.
+3. **Expected:** Copilot shows the name and email you chose. Make sure no bracketed placeholder words were saved. "Local" means these settings apply to this repository only, not every project on your computer.
 4. Return to the reviewed commit step. If a work policy requires signed commits or a managed identity, ask your facilitator to help rather than disabling that policy.
 
 ### Know what each save actually does

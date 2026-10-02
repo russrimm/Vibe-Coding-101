@@ -51,9 +51,9 @@ Need a definition? See the [plain-English glossary](GLOSSARY.md).
 
 ### Built for your first time
 
-The portal provides **hover, keyboard-focus, and tap explanations** for dotted-underlined terms in lesson prose. Press Escape to dismiss them, or turn them off with **Hide word explanations**. Commands and file contents remain unchanged when copied. Each code box says whether its text belongs in **Copilot chat**, a **terminal**, or a **file**. Chat prompts wrap to fit narrow screens without changing the copied text; commands and file examples keep their original layout.
+The portal provides **hover, keyboard-focus, and tap explanations** for dotted-underlined terms in lesson prose. Press Escape to dismiss them, or turn them off with **Hide word explanations**. Prompts and file contents remain unchanged when copied. **Learners never type commands:** each step gives a plain-English **Copilot chat** prompt, and Copilot runs the commands, shows the output, and asks before it changes anything. Each code box says whether its text is a **Copilot chat** prompt, **example output**, or **file content**. Chat prompts wrap to fit narrow screens without changing the copied text; file examples keep their original layout.
 
-Use the **Lesson map** to jump to a numbered step and bookmark its URL. The setup module includes separate Windows/macOS installation routes, a first harmless terminal command, GitHub account setup, and an optional **tool-output helper**. The helper interprets pasted version strings locally; it does not run commands or verify your computer.
+Use the **Lesson map** to jump to a numbered step and bookmark its URL. The setup module includes GitHub account setup, a Copilot prompt that checks (and, with approval, installs) Node.js, npm, and Git, manual Windows/macOS installer fallbacks, and an optional **tool-output helper**. The helper interprets pasted version strings locally; it does not run commands or verify your computer.
 
 Prefer less on screen? Choose **Read one step at a time**. You will see the module overview, one complete numbered step, or its final troubleshooting/reference section. Use **Next section**, **Previous section**, or **Choose a section** to move through it. Each step keeps its explanations, commands, expected results, and substeps together. **Show full lesson** restores the complete text at the same heading.
 

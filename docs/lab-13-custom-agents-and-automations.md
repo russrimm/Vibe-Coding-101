@@ -74,8 +74,8 @@ The key advantage of a custom agent is the `tools` list. A reviewer that physica
    Add the first test you suggested to src/records.test.ts.
    ```
 
-5. **Expected:** the agent says it cannot edit files, or offers the test as text for you to add. ✅ That is the tool limit working. ❌ If it edits the file, check that the `tools` line saved exactly as shown and that you selected **test-reviewer**. Restore the file with `git restore -- src/records.test.ts` after reading the diff.
-6. Switch back to the default agent and add the most useful suggested test yourself with the red → green loop.
+5. **Expected:** the agent says it cannot edit files, or offers the test as text. ✅ That is the tool limit working. ❌ If it edits the file, check that the `tools` line saved exactly as shown and that you selected **test-reviewer**. Then switch to the default agent and ask it to show the diff and restore only that file (`git restore -- src/records.test.ts`).
+6. Switch back to the default agent and ask it to add the most useful suggested test with the red → green loop.
 
 > **Tip:** you can also let Copilot choose. A prompt like "review my tests" may pick **test-reviewer** automatically because of its description. Selecting it explicitly is more predictable while you learn.
 

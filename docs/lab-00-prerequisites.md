@@ -4,8 +4,8 @@
 
 ## What you will learn
 
-- Tell the Copilot desktop app, a terminal, and your browser apart.
-- Check the tools your computer needs.
+- Tell the Copilot desktop app, Copilot's command output, and your browser apart.
+- Let Copilot check (and, with your approval, install) the tools your computer needs.
 - Keep your practice app separate from this learning portal.
 - Review permissions before Copilot acts.
 
@@ -21,7 +21,9 @@ The app is generally available for Windows, macOS, and Linux. This lab gives Win
 
 **Vibe coding** means AI handles much of the coding while you guide it and verify the result. AI can make mistakes. A confident answer is not proof that an app works.
 
-**Your route:** understand the three windows → install/check Node.js and Git → create/sign in to GitHub and Copilot → open one safe folder → plan, build, test, and save. After that, two optional guided modules teach instruction files, skills, and MCP. They are not a barrier to your first working app.
+**You will not type commands in this course.** You tell Copilot what you want in plain English. Copilot runs the commands, shows you what happened, and asks before it changes anything. Your job is to describe the goal, approve or pause each action, and check the result yourself.
+
+**Your route:** understand the three windows → install and sign in to the Copilot app → open one safe folder → agree on permissions → have Copilot check your tools → plan, build, test, and save. After that, two optional guided modules teach instruction files, skills, and MCP. They are not a barrier to your first working app.
 
 In the portal, dotted-underlined words have explanations on hover, keyboard focus, or tap. **Glossary** opens a searchable dictionary without losing your lesson. **Find your next small step** jumps within a lesson. Reading ahead never completes a checkpoint.
 
@@ -31,79 +33,28 @@ Want a shorter page? Choose **Read one step at a time** above the lesson. Start 
 
 | Place | What goes there | How to recognize it |
 | --- | --- | --- |
-| Copilot desktop chat | Plain-English prompts | A message box with Copilot's replies |
-| Terminal | Commands such as `node --version` | A text window with a command prompt and output |
+| Copilot desktop chat | Your plain-English requests | A message box with Copilot's replies. This is where you work. |
+| Copilot's command output | Commands Copilot runs for you, such as `node --version`, and their results | Steps inside Copilot's reply that show a command and its output. You read them; you do not type them. |
 | Browser | The generated app's preview URL | An address bar and the page you are testing |
 
-A **terminal** runs commands on your computer. Copilot can run commands through its tools; its output is not the same as you opening the app in a browser.
+A **terminal** is a text window that runs commands on your computer. Copilot has its own terminal tools, so it runs every command in this course for you. Copilot running a command is not the same as you opening the app in a browser, so you will still check the app yourself.
 
-1. On Windows, open **Start**, search for **PowerShell**, and open it. On macOS, open **Applications → Utilities → Terminal**.
-2. Later, in an active Copilot desktop session, type `/terminal` in the prompt box and press Enter to open a terminal in the right panel. Check its folder before running project commands.
-3. Keep the learning portal in one browser tab and your generated app in a second tab. They are different apps.
+Keep the learning portal in one browser tab and your generated app in a second tab. They are different apps.
 
-### First command, with no risk to your files
+### How you will work in every lab
 
-1. Click inside the terminal. Its last line might start with `PS C:\Users\YourName>` on Windows or end with `%` on a Mac. That prefix is the **command prompt**. Do not copy or type the prefix.
-2. Type the following line and press **Enter** once:
+1. **You describe.** Each step gives you a **Copilot chat** box. Click its **Copy** button, click in the Copilot prompt box, paste with **Ctrl+V** on Windows or **Command+V** on macOS, and press **Enter**. If Copy fails, select the text and copy it manually.
+2. **Copilot asks.** Before it runs a command or changes a file, Copilot shows what it wants to do and waits for you. Read it, then approve or pause. Step 4 explains what to look for.
+3. **Copilot reports.** It shows the commands it ran and their output. You can expand a step in its reply to read the full output.
+4. **You check.** Compare the output with the **Expected** result in the lab. Then check the app in your browser yourself. A summary that says "done" is not proof.
+5. **Code box labels:** **Copilot chat** means send it as a message. **Example output** shows what a result should look like; there is nothing to run. **File content** means text Copilot will save in the named file; you paste it into chat when the step tells you to.
+6. **Later, when a preview server is running** (Copilot starts one for you in Lab 02), it keeps running in the background so you can use your app. To stop it, ask Copilot: "Stop the dev server you started for this project." Do not close someone else's app or process.
 
-   ```terminal
-   echo "Hello, future builder"
-   ```
+> **Curious about the terminal?** In an active session, typing `/terminal` opens a terminal panel where you can watch or run commands. You never need it for these labs. If you do use it, check its folder first.
 
-3. **Expected output:** `Hello, future builder`, followed by a new command prompt. This prints a message; it does not create files.
-4. In later code boxes, **Terminal** means run each line separately and wait for the prompt to return. **Copilot chat** means send the whole request in the chat message box. **File content** means save text into a file, not execute it.
-5. Copy with the code box's **Copy** button, then paste using **Ctrl+V** on Windows or **Command+V** on macOS. Do not paste the surrounding Markdown backticks. If Copy fails, select the text and copy manually.
-6. **Later, when a preview server is running** (you start one in Lab 02), that terminal intentionally does not return to the prompt. Keep it open. **Ctrl+C** in that terminal stops that command on Windows or macOS; it is not the Mac copy shortcut. Do not close someone else's terminal or process.
+**Checkpoint:** you can say which window gets a prompt and which gets a URL, and you know that Copilot runs the commands.
 
-**Checkpoint:** you can say which window gets a command, a prompt, or a URL before pasting anything.
-
-## Step 2: Check Node.js, npm, and Git
-
-Git is a prerequisite for the desktop app. Node.js and npm run the web-development tools.
-
-1. **Terminal commands — run one line at a time:**
-
-   ```terminal
-   node --version
-   npm --version
-   git --version
-   ```
-
-2. **Expected output:** Node shows `v24.x.x` (the lab's Node.js 24 LTS baseline); npm shows a version number; Git shows `git version` followed by a version number. The `x` characters mean your installed patch numbers, not text to type. A newer Node LTS may work, but rehearse it with the chosen scaffold first.
-3. If Node or npm is missing, follow the Node.js instructions for **your operating system only** below. npm comes with Node.js; do not search for a separate npm installer.
-4. If Git is missing, follow the Git instructions below. Git and GitHub are different: installing Git does not create a GitHub account.
-5. Close and reopen the terminal after installing tools. If Copilot desktop is already open, restart it too. Run all three commands again.
-6. Write down the three actual versions. Do not mark this checkpoint while a command still fails.
-
-**Troubleshooting:** “command not found” or “not recognized” usually means a tool is missing or the app still has its old environment. On Windows, if policy blocks `npm.ps1`, try `npm.cmd --version` and use `npm.cmd` in later commands. Do not weaken machine-wide execution policies or run random repair scripts. Ask your facilitator or IT support if approved installs are blocked.
-
-### Windows: install Node.js and Git
-
-1. Open [Node.js downloads](https://nodejs.org/en/download) in your browser. Select the **24.x LTS** release and **Windows**. Choose the Windows installer (`.msi`), not source code or a Docker image. If the page starts with a command-line installation method, find the prebuilt installer option.
-2. Choose your computer's architecture: check **Settings → System → About → System type**. Most Intel/AMD PCs use x64; ARM-based PCs need a supported ARM build. Ask IT if unsure; do not guess based on the computer's brand.
-3. Open the downloaded `.msi` from **Downloads**. Read the installer screens and keep npm and PATH integration enabled. **PATH** is the list of folders your terminal searches for commands. Accept only a trusted installer you intentionally downloaded.
-4. You do not need the optional tools for compiling native modules for this starter. Do not install extra toolchains or package managers just because an optional checkbox offers them.
-5. Open [Git's Windows download page](https://git-scm.com/downloads/win). Follow its link to the official Git for Windows installer for your architecture.
-6. Open the installer. Follow your organization's approved defaults. Keep the option that makes Git available from the command line and third-party software. You do not need GitHub Desktop, WSL, or Git Bash to follow this PowerShell route.
-7. Close and reopen PowerShell. Run the three version commands again. Save the actual output, not the example versions. If an installer requires permission you do not have, stop and ask IT.
-
-### macOS: install Node.js and Git
-
-1. Open [Node.js downloads](https://nodejs.org/en/download). Select **24.x LTS** and **macOS**, then the prebuilt installer (`.pkg`) rather than source code or Docker instructions. If architecture is requested, **Apple menu → About This Mac** shows an Apple chip or an Intel processor.
-2. Open the `.pkg` from **Downloads** and follow the installer prompts through completion. npm is included. Use the approved installer route; you do not need Homebrew or a version manager for this exercise.
-3. Open **Applications → Utilities → Terminal** and run `git --version`. If macOS offers **Command Line Tools**, select **Install**, read the terms, and let the installation finish. These tools include Git; you do not need the full Xcode app for this lab.
-4. If no prompt appears and Git is missing, use Apple's documented installer request in Terminal:
-
-   ```bash
-   xcode-select --install
-   ```
-
-5. **Expected:** a system installation dialog, not a Git version. If it reports the tools are already installed, do not repeatedly reinstall them; retry `git --version` and ask IT if it still fails.
-6. Quit and reopen Terminal and any already-running Copilot app. Run all three version commands again. See the [Git installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for other approved options.
-
-**Stuck reading the output?** The portal's optional tool-output helper below this module explains pasted version strings. It does not run anything or inspect your computer. Do not paste access tokens, passwords, or entire diagnostic logs.
-
-## Step 3: Install, sign in, and check Copilot
+## Step 2: Install, sign in, and check Copilot
 
 ### Create your GitHub account first
 
@@ -120,19 +71,20 @@ Git is a prerequisite for the desktop app. Node.js and npm run the web-developme
 3. Click **Sign in to GitHub**. Complete sign-in on the expected service's sign-in page and return to the app. Use **Use GitHub Enterprise** only if your organization uses that option. Never paste a password, access token, recovery code, or secret into chat.
 4. Confirm you have a Copilot plan, then finish onboarding. You can skip connecting recent repositories—we will add an empty local folder next. Bring-your-own-provider credentials are an alternative supported by the app, but are outside this beginner route.
 5. For a Business/Enterprise account, an administrator may need to check the separate **GitHub Copilot app** policy. The current app policy is separate from the CLI policy; installing the CLI does not resolve disabled app access.
-6. Open **Chats** in the sidebar and start a conversation. **Chat prompt — paste into Copilot, not a terminal:**
+6. The app needs **Git** (a tool that tracks file changes) to work with project folders. If the installer or app says Git is missing, install it with the manual steps under **If Copilot cannot install a tool** in Step 5, restart the app, and come back here.
+7. Open **Chats** in the sidebar and start a conversation. **Chat prompt:**
 
    ```prompt
    In one sentence, explain what a local web app is. Do not create files or run commands.
    ```
 
-7. **Verify:** you receive a meaningful reply. Record the desktop app version. An access, quota, or policy error is a setup blocker, not something to bypass.
+8. **Verify:** you receive a meaningful reply. Record the desktop app version. An access, quota, or policy error is a setup blocker, not something to bypass.
 
 **Before you move on:** Git tracks your files; GitHub is the account/hosting service; GitHub Copilot is the AI helper. A GitHub sign-in alone does not prove Copilot works. The reply above is your check.
 
 > These labels were checked against the official documentation on 2026-09-26. Placement may differ in another app build. Consult the [current quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) if labels differ; do not switch to a similarly named Copilot product.
 
-## Step 4: Make a dedicated learner folder and local session
+## Step 3: Make a dedicated learner folder and local session
 
 1. In Windows File Explorer or macOS Finder, create a new folder named **VibeProjects** inside your personal Documents folder.
 2. Inside it, create an **empty** folder named **my-first-vibe-app**. If that name already contains files, choose a new name; do not delete existing work.
@@ -145,22 +97,19 @@ Git is a prerequisite for the desktop app. Node.js and npm run the web-developme
    Before changing anything, report this session's actual working directory,
    its project root, and whether it uses a separate Git worktree.
    List the existing files, including hidden project instructions.
-   Run node --version, npm --version, and git --version here and show their output.
    Do not create, overwrite, delete, install, or deploy anything.
    ```
 
-7. **Verify:** the reported project is your new learner project, and all three commands succeed inside the session too. An empty folder may contain Git metadata created by the app; it must not contain another app or private files.
-8. Record the **actual session working directory**. A **worktree** is a separate checkout used by a session; its path may differ from the original folder. All later commands, file reviews, and commits must use this same session workspace.
-9. Try `/terminal` in the active session. It opens a right-panel terminal. Keep terminal commands there and plain-English requests in chat.
+7. **Verify:** the reported project is your new learner project. An empty folder may contain Git metadata created by the app; it must not contain another app or private files.
+8. Record the **actual session working directory** in your notes. A **path** is simply a folder's address. A **worktree** is a separate checkout used by a session; its path may differ from the original folder. All later work, file reviews, and commits happen in this same session workspace.
+9. If the reported path is not your learner folder, stop. Start a new session from the correct project before going further.
 
-10. In that terminal, check the folder yourself. On Windows run `Get-Location`; on macOS run `pwd`. **Expected:** the same actual session workspace Copilot reported. A **path** is simply a folder's address. If it differs, stop before running the scaffold; reopen the terminal for the correct session.
+> Never build inside the portal or copy the portal's enterprise instruction files into your beginner app. They describe a different project. If a session path or existing instruction is unexpected, pause and inspect it with your facilitator.
 
-> Never scaffold inside the portal or copy the portal's enterprise instruction files into your beginner app. They describe a different project. If a session path or existing instruction is unexpected, pause and inspect it with your facilitator.
-
-## Step 5: Agree on safe permissions
+## Step 4: Agree on safe permissions
 
 1. Stay in **Interactive** mode for the build steps. Use **Plan** for the next module's planning task; do not select **Autopilot** for this beginner exercise.
-2. Before allowing an action, read its command, target path, and network destination. Ask “What will change, and can I undo it?”
+2. Before allowing an action, read its command, target path, and network destination. Ask “What will change, and can I undo it?” You do not need to understand every word of a command. If you are unsure, use the prompt below.
 3. Allow only actions needed for the current small step. Package installation downloads and runs code, so review the package names and source first.
 4. Pause requests to delete files, read unrelated folders, reveal credentials, add accounts, publish a repository, expose a dev server to the network, or deploy cloud resources.
 5. Do not enable blanket approval to make the lab faster. If you previously enabled tool auto-approval, `/reset-allowed-tools` in an active session clears session approvals and turns auto-approval off. Review the resulting permissions before continuing.
@@ -172,11 +121,78 @@ Git is a prerequisite for the desktop app. Node.js and npm run the web-developme
    local-only alternative. Do not proceed until I explicitly approve it.
    ```
 
+## Step 5: Check Node.js, npm, and Git
+
+**Node.js** and **npm** run the web-development tools this lab uses; npm comes with Node.js. **Git** saves snapshots of your work. Copilot checks all three for you and, if something is missing, offers to install it.
+
+1. In your learner session, send this **Copilot chat** prompt:
+
+   ```prompt
+   Check that Node.js, npm, and Git are ready in this session.
+   Run node --version, npm --version, and git --version and show me the exact output.
+   This lab needs Node.js 24 LTS. If a tool is missing or Node.js is not version 24,
+   explain in plain language what is wrong. Then propose the official installation
+   for my operating system, show the exact command and what it will change,
+   and wait for my approval before installing anything.
+   Do not change execution policies, PATH, or other system settings.
+   ```
+
+2. **Expected output:** something like the following. The numbers on your computer will differ. Node.js must start with `v24`.
+
+   ```output
+   v24.19.0
+   11.17.0
+   git version 2.53.0.windows.1
+   ```
+
+3. **If something is missing,** read Copilot's proposal before approving it. On Windows it will usually suggest **winget**, the Windows package manager, for example the `OpenJS.NodeJS.LTS` or `Git.Git` package. On macOS it may suggest **Homebrew** if you already have it. Approve only official Node.js 24 LTS or Git packages. Do not let it install extra tools.
+4. Your computer may show its own security prompt, such as Windows asking "Do you want to allow this app to make changes?" or macOS asking for your password. That prompt comes from your operating system, not Copilot. Only you can answer it. If you do not have permission, stop and ask IT.
+5. **After any installation, quit and reopen the Copilot app.** An app that was already open does not see newly installed tools. Return to the same learner session and send:
+
+   ```prompt
+   Run node --version, npm --version, and git --version again and show the output.
+   ```
+
+6. Write down the three actual versions. Do not mark this checkpoint while a check still fails.
+
+**Troubleshooting:** “command not found” or “not recognized” usually means a tool is missing or the app still has its old environment; restart the app and ask again. On Windows, if Copilot reports that policy blocks `npm.ps1`, tell it: "Use npm.cmd instead. Do not change the execution policy." Do not weaken machine-wide security settings or run random repair scripts. Ask your facilitator or IT support if approved installs are blocked.
+
+### If Copilot cannot install a tool
+
+Some computers block package managers, or Copilot cannot install a tool without one. Use the official installer for **your operating system only** below. These are normal app installers you click through; you do not type any commands. When you finish, quit and reopen the Copilot app and send the check prompt again.
+
+### Windows: install Node.js and Git
+
+1. Open [Node.js downloads](https://nodejs.org/en/download) in your browser. Select the **24.x LTS** release and **Windows**. Choose the Windows installer (`.msi`), not source code or a Docker image. If the page starts with a command-line installation method, find the prebuilt installer option.
+2. Choose your computer's architecture: check **Settings → System → About → System type**. Most Intel/AMD PCs use x64; ARM-based PCs need a supported ARM build. Ask IT if unsure; do not guess based on the computer's brand.
+3. Open the downloaded `.msi` from **Downloads**. Read the installer screens and keep npm and PATH integration enabled. **PATH** is the list of folders your computer searches for commands. Accept only a trusted installer you intentionally downloaded.
+4. You do not need the optional tools for compiling native modules for this starter. Do not install extra toolchains or package managers just because an optional checkbox offers them.
+5. Open [Git's Windows download page](https://git-scm.com/downloads/win). Follow its link to the official Git for Windows installer for your architecture.
+6. Open the installer. Follow your organization's approved defaults. Keep the option that makes Git available from the command line and third-party software. You do not need GitHub Desktop, WSL, or Git Bash for this lab.
+7. Quit and reopen the Copilot app. Ask Copilot to run the three version checks again. Save the actual output, not the example versions. If an installer requires permission you do not have, stop and ask IT.
+
+### macOS: install Node.js and Git
+
+1. Open [Node.js downloads](https://nodejs.org/en/download). Select **24.x LTS** and **macOS**, then the prebuilt installer (`.pkg`) rather than source code or Docker instructions. If architecture is requested, **Apple menu → About This Mac** shows an Apple chip or an Intel processor.
+2. Open the `.pkg` from **Downloads** and follow the installer prompts through completion. npm is included. Use the approved installer route; you do not need Homebrew or a version manager for this exercise.
+3. Git on a Mac comes with Apple's **Command Line Tools**. When Copilot runs `git --version` and Git is missing, macOS usually shows a dialog offering to install them. Select **Install**, read the terms, and let the installation finish. You do not need the full Xcode app for this lab.
+4. If no dialog appears and Git is still missing, ask Copilot to open Apple's installer for you:
+
+   ```prompt
+   Git is missing on my Mac. Run xcode-select --install so macOS shows the
+   Command Line Tools installer. Do not install anything else.
+   ```
+
+5. **Expected:** a system installation dialog appears. Follow it to the end. If Copilot reports the tools are already installed, do not keep reinstalling them; ask Copilot to run `git --version` again, and ask IT if it still fails.
+6. Quit and reopen the Copilot app. Ask Copilot to run all three version checks again. See the [Git installation guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for other approved options.
+
+**Stuck reading the output?** The portal's optional tool-output helper below this module explains the version text Copilot showed you. It does not run anything or inspect your computer. Do not paste access tokens, passwords, or entire diagnostic logs.
+
 ## Verify and continue
 
-In the portal's checklist, confirm only what you personally observed: a Copilot reply, three successful version checks, the correct local workspace, and a reviewed permissions boundary. These are learner-reported checks; the portal cannot inspect your computer or generated app.
+In the portal's checklist, confirm only what you personally observed: a Copilot reply, three successful version checks that Copilot ran and showed you, the correct local workspace, and a reviewed permissions boundary. These are learner-reported checks; the portal cannot inspect your computer or generated app.
 
-**Summary:** you have an AI conversation, working tools, and an isolated place to learn.
+**Summary:** you have an AI conversation, working tools, an isolated place to learn, and a habit of letting Copilot do the typing while you check the results.
 
 **Official references:** [quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app), [session modes and locations](https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions), [slash commands](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/slash-commands), [Node.js downloads](https://nodejs.org/en/download), [Git installation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [creating a GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github), [Apple Command Line Tools](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/).
 

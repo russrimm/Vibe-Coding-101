@@ -81,6 +81,10 @@ test('every beginner module has learning goals, observable checks, recovery and 
         ).toMatch(
           /^(prompt|terminal|powershell|bash|markdown|json|yaml|output|text|diagram)$/
         )
+        expect(
+          match[2]?.trim(),
+          `${file}: learners ask Copilot to run commands; use a prompt block instead of a command block`
+        ).not.toMatch(/^(terminal|powershell|bash)$/)
       } else if (match[1][0] === fence[0] && match[1].length >= fence.length) {
         fence = undefined
       }

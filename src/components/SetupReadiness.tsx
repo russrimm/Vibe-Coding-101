@@ -57,11 +57,11 @@ export default function SetupReadiness() {
         Optional: help me understand my tool output
       </summary>
       <p id="tool-helper-description" className="my-3 text-sm leading-relaxed">
-        Run these commands in your terminal, then paste just the version output.
-        This helper checks text in this browser only: it cannot inspect your
-        computer, execute commands, verify installation, or complete
-        checkpoints. Values are not saved or sent anywhere. Copy real results
-        into your evidence notes below.
+        Ask Copilot to run these commands for you (Lab 00 Step 5), then paste
+        just the version output it shows. This helper checks text in this
+        browser only: it cannot inspect your computer, execute commands, verify
+        installation, or complete checkpoints. Values are not saved or sent
+        anywhere. Copy real results into your evidence notes below.
       </p>
       <form
         onSubmit={onSubmit}

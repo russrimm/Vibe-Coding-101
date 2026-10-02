@@ -34,7 +34,7 @@ Your session should still be in your learner project with a clean `git status`. 
    ```
 
 2. Review the diff. **Expected:** one new `devDependencies` entry for `vitest` and one new script, `"test": "vitest run"`. Approve the install.
-3. You may see `npm warn allow-scripts` lines during install. They are a security notice from newer npm versions about packages that want to run install scripts. In our rehearsal they were advisory and everything worked. Do not run `npm approve-scripts` just to hide the message; ask Copilot to explain it if you are curious.
+3. You may see `npm warn allow-scripts` lines during install. They are a security notice from newer npm versions about packages that want to run install scripts. In our rehearsal they were advisory and everything worked. Do not let Copilot run `npm approve-scripts` just to hide the message; ask it to explain the message if you are curious.
 
 ## Step 2: Move the rules into a testable file
 
@@ -73,11 +73,7 @@ Before changing anything, write tests for what already works. These are sometime
    ```
 
 2. Read the test file. Each `it(...)` line should describe one behavior in plain English.
-3. **Terminal** (or ask Copilot to run it):
-
-   ```terminal
-   npm test
-   ```
+3. If Copilot did not already run the tests, ask: "Run npm test and show me the full output."
 
 4. **Expected output** (timings will differ):
 
@@ -144,14 +140,17 @@ Your spec says names must be **40 characters or fewer**. The app does not enforc
 
 How do you know a passing test would catch a real bug? Break the code on purpose and see. This idea is called **mutation testing**. You are doing a tiny manual version.
 
-1. Open `src/records.ts` (ask Copilot to show it, or open it in any editor). Find the line in `validateName` that trims the name, such as `const trimmed = name.trim()`.
-2. Temporarily remove `.trim()` so it reads `const trimmed = name`. Save the file.
-3. **Terminal:**
+1. **Copilot chat:**
 
-   ```terminal
-   npm test
+   ```prompt
+   I want to test my tests. In src/records.ts, find the line in validateName
+   that trims the name (such as const trimmed = name.trim()). Temporarily
+   remove .trim() so it reads const trimmed = name. Change nothing else.
+   Then run npm test and show me the full output. Do not fix anything.
    ```
 
+2. Read the diff Copilot shows before approving. Only that one line should change.
+3. Let Copilot run the tests.
 4. **Expected:** a test fails. In our rehearsal it was:
 
    ```output
@@ -161,14 +160,15 @@ How do you know a passing test would catch a real bug? Break the code on purpose
 
    ✅ That is good news. Your tests noticed the bug. ❌ If **all tests still pass**, your tests are missing a case. Ask Copilot for a test that would catch it.
 
-5. Undo your deliberate bug. This command throws away uncommitted edits to **this one file only**:
+5. Undo your deliberate bug. **Copilot chat:**
 
-   ```terminal
-   git restore -- src/records.ts
-   npm test
+   ```prompt
+   Undo my deliberate bug by restoring src/records.ts to its last committed
+   version with git restore -- src/records.ts. Restore only that one file.
+   Then run npm test and git status --short and show me both outputs.
    ```
 
-6. **Expected:** all 9 tests pass again, and `git status --short` prints nothing.
+6. **Expected:** all 9 tests pass again, and Copilot reports no changed files.
 
 ## Step 7: Build rename from the spec, test-first
 
@@ -212,7 +212,7 @@ Now repeat the same loop for the real feature.
 ## Common issues
 
 - **`npm test` says "Missing script":** the `test` script was not added. Ask Copilot to add `"test": "vitest run"` to `package.json`.
-- **Vitest stays running and never finishes:** you are in watch mode. Press **Ctrl+C**, then make sure the script is `vitest run`, not `vitest`.
+- **Vitest stays running and never finishes:** it is in watch mode. Ask Copilot to stop that test run and make sure the `test` script is `vitest run`, not `vitest`.
 - **Build fails with type errors in the test file:** the starter type-checks everything in `src`. Paste the first error to Copilot and ask for the smallest fix. Do not exclude tests from type checking.
 - **A test passes before you write the code:** the test is not checking what you think. Ask: "Why does this test pass when the feature does not exist yet?"
 - **Copilot wants to add React Testing Library or jsdom:** those are useful for testing components on screen, but they are more to learn. This lab tests pure functions only. You can add component tests later as a separate, planned change.

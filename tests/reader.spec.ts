@@ -11,7 +11,8 @@ import {
   PROGRESS_KEY,
 } from '../src/lib/labProgress'
 
-const setupAnchor = 'lab-00-step-2-check-nodejs-npm-and-git'
+const setupAnchor = 'lab-00-step-5-check-nodejs-npm-and-git'
+const installAnchor = 'lab-00-step-2-install-sign-in-and-check-copilot'
 const buildAnchor = 'lab-02-step-3-add-a-record'
 const skillsAnchor = 'lab-06-step-2-create-one-local-review-skill'
 
@@ -104,7 +105,7 @@ test('guided reader handles next, previous, full-view switching, history and rel
   )
   await expect(
     page.getByRole('heading', {
-      name: 'Step 2: Check Node.js, npm, and Git',
+      name: 'Step 2: Install, sign in, and check Copilot',
       exact: true,
     })
   ).toHaveCount(0)
@@ -113,33 +114,33 @@ test('guided reader handles next, previous, full-view switching, history and rel
     page.locator('#lab-00-step-1-understand-the-three-places-you-will-work')
   ).toBeFocused()
   await page.getByRole('link', { name: /^Next section:/ }).click()
-  await expect(page.locator(`#${setupAnchor}`)).toBeFocused()
+  await expect(page.locator(`#${installAnchor}`)).toBeFocused()
   await expect(
     page.getByRole('heading', {
-      name: 'Windows: install Node.js and Git',
+      name: 'Install the AI coding app, not a similarly named product',
       exact: true,
     })
   ).toBeVisible()
   await page.reload()
-  await expect(page.getByLabel('Choose a section')).toHaveValue(setupAnchor)
-  await expect(page.locator(`#${setupAnchor}`)).toBeFocused()
+  await expect(page.getByLabel('Choose a section')).toHaveValue(installAnchor)
+  await expect(page.locator(`#${installAnchor}`)).toBeFocused()
   await page
     .getByRole('link', { name: 'Show full lesson', exact: true })
     .click()
   await expect(
     page.getByRole('heading', {
-      name: 'Step 3: Install, sign in, and check Copilot',
+      name: 'Step 3: Make a dedicated learner folder and local session',
       exact: true,
     })
   ).toBeVisible()
   await page.goBack()
-  await expect(page.getByLabel('Choose a section')).toHaveValue(setupAnchor)
+  await expect(page.getByLabel('Choose a section')).toHaveValue(installAnchor)
   await page.goBack()
   await expect(page.getByLabel('Choose a section')).toHaveValue(
     'lab-00-step-1-understand-the-three-places-you-will-work'
   )
   await page.goForward()
-  await expect(page.getByLabel('Choose a section')).toHaveValue(setupAnchor)
+  await expect(page.getByLabel('Choose a section')).toHaveValue(installAnchor)
   await page
     .getByRole('link', { name: 'Previous section', exact: true })
     .click()
@@ -273,7 +274,7 @@ test('checkpoint links preserve their own reading section across reload, history
     setupAnchor
   )
   await fresh.close()
-  const other = 'lab-00-step-3-install-sign-in-and-check-copilot'
+  const other = installAnchor
   await select.selectOption(other)
   await checkpoints.click()
   await page.goBack()

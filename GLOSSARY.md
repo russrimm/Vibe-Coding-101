@@ -7,8 +7,8 @@ In the portal, dotted-underlined words also have definitions on hover, keyboard 
 ## The three places you work
 
 - **GitHub Copilot desktop app:** the AI coding app used for this course. You create a local project session, send prompts, review changes, and inspect results. Use the [official download page](https://github.com/features/ai/github-app) and follow your organization's installation policy. It is not GitHub Desktop, Copilot CLI, or the VS Code extension.
-- **Chat:** the conversation where you give Copilot plain-English instructions. Do not paste terminal commands into chat unless you are asking Copilot to run or explain them.
-- **Terminal:** a text window that runs commands on your computer. Use PowerShell on Windows, Terminal on macOS, or `/terminal` in an active Copilot desktop session; no editor is required.
+- **Chat:** the conversation where you give Copilot plain-English instructions. This is where you do almost everything in the course, including asking Copilot to run commands for you.
+- **Terminal:** a text window that runs commands on your computer. In this course, Copilot runs the commands in its own terminal and shows you the output; you do not type them yourself.
 - **Browser:** the app that displays websites. Its address bar is where you open the generated app's preview URL.
 
 ## Working with AI
@@ -38,7 +38,7 @@ In the portal, dotted-underlined words also have definitions on hover, keyboard 
 - **Markdown:** plain text with formatting marks, such as `#` for a heading. Files end in `.md`, not `.md.txt`.
 - **YAML frontmatter:** a short settings block between `---` lines at the beginning of a Markdown file. A skill uses it to declare its name and description.
 - **JSON:** structured text used for data and settings. Use double quotes around names/text; ordinary JSON does not allow comments or trailing commas.
-- **PATH:** a list of folders searched by the terminal to find a command. Reopening a terminal after installation helps it see updated PATH settings.
+- **PATH:** a list of folders searched to find a command. Restarting the Copilot app after an installation helps it see updated PATH settings.
 
 ## The local web app
 

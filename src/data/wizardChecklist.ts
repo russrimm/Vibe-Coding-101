@@ -32,7 +32,7 @@ export const WIZARD_CHECKLIST: ChecklistSection[] = [
         id: 'setup-tool-versions',
         text: 'I verified Node.js, npm, and Git in my local session',
         detail:
-          'Record the output of node --version, npm --version, and git --version. The lab baseline is Node.js 24 LTS.',
+          'Ask Copilot to run node --version, npm --version, and git --version, and record the output it shows. The lab baseline is Node.js 24 LTS.',
       },
       {
         id: 'setup-local-workspace',
@@ -104,13 +104,13 @@ export const WIZARD_CHECKLIST: ChecklistSection[] = [
         id: 'testing-build-lint',
         text: 'I verified build and lint both finished with exit code 0',
         detail:
-          'Run npm run build and npm run lint in the actual learner workspace. Read both outputs; do not weaken checks to hide failures.',
+          'Ask Copilot to run npm run build and npm run lint in the actual learner workspace. Read both outputs; do not weaken checks to hide failures.',
       },
       {
         id: 'testing-reviewed-commit',
         text: 'I reviewed the files and verified an intentional local Git commit',
         detail:
-          'Inspect new and changed files, exclude secrets/generated files, review the staged diff, record git log -1 --oneline and git status --short. No push or deployment.',
+          'Inspect new and changed files, exclude secrets/generated files, review the staged diff, and have Copilot show git log -1 --oneline and git status --short. No push or deployment.',
       },
     ],
   },

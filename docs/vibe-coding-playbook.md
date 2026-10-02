@@ -29,6 +29,7 @@ Every good vibe coding session repeats the same six moves. Small loops are easie
 - ✅ **Use made-up data.** Never use real customer, patient, or financial information.
 - ✅ **Know where your work lives.** Check the folder shown for your session before you approve any change.
 - ✅ **Choose the right mode.** Use **Plan** to think things through. Use **Interactive** to build one step at a time. Skip **Autopilot** until you have automated tests and are comfortable reviewing changes ([Lab 12](lab-12-autopilot-and-parallel-sessions.md) shows how to use it safely).
+- ✅ **Let Copilot do the typing.** You never need to run commands yourself. Ask Copilot to install tools, start the app, run checks, or save a commit. Then read the output it shows you before you approve the next step.
 
 ## A good request has four parts
 
@@ -91,7 +92,7 @@ You do not need to understand every line of code. You do need to check the resul
 
 1. **Read the summary.** Does it match what you asked for?
 2. **Open Changes.** Did it only touch files you expected? A surprise file is a reason to ask "why did you change this?"
-3. **Run the app.** Use the actual address shown in the terminal, such as `http://localhost:5173/`.
+3. **Run the app.** Ask Copilot to start the dev server and show you the Local URL, such as `http://localhost:5173/`. Open that exact address in your browser.
 4. **Try the happy path.** Do the normal thing a user would do.
 5. **Try to break it.** Leave a field blank. Type only spaces. Refresh the page.
 6. **Ask one hard question.** "What could go wrong with this change?"
@@ -104,8 +105,8 @@ You do not need to understand every line of code. You do need to check the resul
 | --- | --- |
 | The AI keeps changing things you did not ask for | Say "Stop." Ask it to list its recent changes and undo the ones you did not request. Then ask again with clearer **Limits**. |
 | The same error comes back after two or three tries | Paste the full error. Ask for the cause first, not a fix. If it still loops, start a new session and paste a short summary of the goal. |
-| The browser shows a blank page | Look at the terminal for red text. Also open the browser's developer tools (F12 on Windows, Option+Command+I on Mac) and copy the error from the **Console** tab. |
-| The page will not open at all | Check that the dev server is still running in a terminal. Use the address it prints; the port number can change. |
+| The browser shows a blank page | Ask Copilot to show the latest dev server output and look for red text. Also open the browser's developer tools (F12 on Windows, Option+Command+I on Mac) and copy the error from the **Console** tab. |
+| The page will not open at all | Ask Copilot: "Is the dev server still running? If not, start it and show me the Local URL." Use the address it reports; the port number can change. |
 | One request became a huge change | Ask it to split the work into smaller steps and do only the first one. |
 | You are lost and nothing makes sense | Use prompt 6 above. Then compare its summary with your plan. |
 | Everything was working a few minutes ago | Ask: "Show me the changes since my last commit and help me decide whether to undo them." Review before approving any undo command. |

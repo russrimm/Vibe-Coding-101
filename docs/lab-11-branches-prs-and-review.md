@@ -31,15 +31,17 @@ A **branch** is a separate line of work. A **pull request** (PR) is a GitHub pag
 
 CI runs the same checks you run by hand (lint, tests, build) on a fresh computer every time you push. If it passes there, it is not just "works on my machine."
 
-1. Stop your app's dev server first (press **Ctrl+C** in its terminal); the next prompt reinstalls packages. In your learner project's session, use **Interactive** mode. **Copilot chat:**
+1. In your learner project's session, use **Interactive** mode. The next prompt reinstalls packages, so it asks Copilot to stop the dev server first. **Copilot chat:**
 
    ```prompt
-   Create .github/workflows/ci.yml with exactly the content I paste next.
-   Do not change any other files. Then run npm ci, npm run lint, npm test,
-   and npm run build locally and report each exit code.
+   If a dev server for this project is running, stop it first (on Windows it
+   locks files that npm ci needs to replace). Then create .github/workflows/ci.yml
+   with exactly the content I paste next. Do not change any other files.
+   Then run npm ci, npm run lint, npm test, and npm run build locally and
+   report each exit code.
    ```
 
-2. Paste this as your next message (or save it yourself at `.github/workflows/ci.yml`):
+2. Paste this **file content** as your next message:
 
    ```yaml
    name: CI
@@ -69,20 +71,16 @@ CI runs the same checks you run by hand (lint, tests, build) on a fresh computer
    ```
 
 3. **What each part does:** `on` says when to run (every pull request, and every push to `main`). `permissions: contents: read` gives the workflow read-only access, which is all it needs. The steps download your code, install Node.js 24, install the exact packages from `package-lock.json` with `npm ci`, and run your three checks.
-4. **Check your branch name.** This lab expects the session from Labs 00–10 that works directly in your project folder (a **local repository** session), not a working tree. In its terminal run:
+4. **Check your branch name.** This lab expects the session from Labs 00–10 that works directly in your project folder (a **local repository** session), not a working tree. **Copilot chat:**
 
-   ```terminal
-   git branch --show-current
+   ```prompt
+   What is the current Git branch in this session (git branch --show-current)?
+   If it is master, rename it to main with git branch -m master main and show
+   me the new branch name. If it is anything else, do not change it; just tell me.
    ```
 
-   **Expected:** `main` or `master`. In our rehearsal, `git init` created `master`. If yours says `master`, rename it now, before anything is published, so every later step can say `main`:
-
-   ```terminal
-   git branch -m master main
-   ```
-
-   If it prints any other name, you are probably in a working-tree session. Switch to your original project session before continuing.
-5. **Verify:** all four local commands exit with code 0. Stop your app's dev server first (press **Ctrl+C** in its terminal): on Windows, `npm ci` deletes `node_modules`, and a running dev server keeps some of those files locked. If `npm ci` then reports that `package-lock.json` and `package.json` are out of sync, ask Copilot to run `npm install` once, review the lockfile change, and try again.
+   **Expected:** `main`, or `master` renamed to `main`. In our rehearsal, `git init` created `master`, so renaming it now, before anything is published, lets every later step say `main`. If Copilot reports any other name, you are probably in a working-tree session. Switch to your original project session before continuing.
+5. **Verify:** Copilot reports exit code 0 for all four commands. If `npm ci` reports that `package-lock.json` and `package.json` are out of sync, ask Copilot to run `npm install` once, show you the lockfile change, and try again. If it reports `EPERM` or `EBUSY` on Windows, a dev server is still holding files; ask Copilot to stop it and retry.
 6. Commit only the workflow file: `ci: run lint, tests, and build on GitHub`.
 
 ## Step 2: Publish to a private GitHub repository
@@ -97,17 +95,16 @@ CI runs the same checks you run by hand (lint, tests, build) on a fresh computer
    Do not run anything until I approve. Push the current branch only.
    ```
 
-2. Read the plan. ✅ Approve only if the repository is **private** and the push is your current branch.
-3. **Prefer to do it yourself?** On GitHub, choose **New repository**, name it `store-inventory-practice`, choose **Private**, and do **not** add a README, license, or .gitignore. Copy the HTTPS URL it shows. Then in your session's terminal, replacing `YOUR-USERNAME`:
+2. Read the plan. ✅ Approve only if the repository is **private** and the push is your current branch. Copilot typically uses the GitHub CLI (`gh`) or Git to create the repository, connect it as `origin`, and push your branch.
+3. **If Copilot cannot create the repository for you:** on GitHub, choose **New repository**, name it `store-inventory-practice`, choose **Private**, and do **not** add a README, license, or .gitignore. Copy the HTTPS URL it shows. Then **Copilot chat**, pasting your URL:
 
-   ```terminal
-   git remote add origin https://github.com/YOUR-USERNAME/store-inventory-practice.git
-   git push -u origin HEAD
+   ```prompt
+   Connect this project to my new empty private GitHub repository at
+   [PASTE THE HTTPS URL] as the remote named origin, then push the current
+   branch and set it as the upstream. Show me each command before running it.
    ```
 
-   `HEAD` means "the branch I am on now." `-u` remembers GitHub as this branch's upstream, so later you can type just `git pull`.
-
-4. **If Git asks you to sign in:** on Windows, Git for Windows usually opens a browser sign-in through Git Credential Manager. Complete it in the browser. GitHub does **not** accept your account password typed into a terminal. If you are asked for a password in the terminal, stop and ask Copilot or your facilitator to help you authenticate with the GitHub CLI (`gh auth login`) instead. Never paste a token into chat.
+4. **If you are asked to sign in:** a browser window may open for GitHub sign-in (Git Credential Manager or the GitHub CLI). Complete it in the browser yourself. GitHub does **not** accept your account password typed into a command prompt. If Copilot reports it is waiting for a password, stop and ask it to help you authenticate with the GitHub CLI (`gh auth login`) in the browser instead. Never paste a password or token into chat.
 5. **Verify:** open the repository on GitHub. You see your files, a **Private** label, and an **Actions** tab. Under **Actions**, the CI workflow ran for your push. Wait for a green check ✅.
 
 ## Step 3: Start the feature in its own session and branch
@@ -145,7 +142,7 @@ Each session in the Copilot app can run in its own **working tree**, a separate 
    ```
 
 4. It returns findings with severity and confidence. A small local list app may have **no findings**. That is a good result, not a broken command. If something is reported, ask Copilot to explain the risk with a concrete example before fixing it.
-5. Run all checks again: `npm test`, `npm run lint`, and `npm run build`. Commit with a clear message, such as `feat: show visible record count`.
+5. Ask Copilot to run all checks again (`npm test`, `npm run lint`, and `npm run build`) and show the exit codes. Then have it commit with a clear message, such as `feat: show visible record count`.
 
 > `/review` and `/security-review` need an active session that has changes. If either says there is nothing to review, make sure you are in the feature session and your changes exist.
 
@@ -187,24 +184,23 @@ Practice the repair loop on purpose. It is the most valuable part of this lab.
    - Is anything in the PR that I did not ask for?
 2. If all answers are good, merge on GitHub in your browser, or use `/pr-merge` in the session (it needs a mergeable pull request).
 3. The app also offers **agent merge**, which lets the session fix blockers and merge as soon as GitHub allows. Do not use it for this lab. You want to practice the decision yourself.
-4. Bring the merged work back to your main project. Stop any dev server running from that folder first. Then, in a terminal in your original project folder:
+4. Bring the merged work back to your main project. Open your **original** project session (the local repository one), then **Copilot chat:**
 
-   ```terminal
-   git switch main
-   git pull
-   npm ci
-   npm test
+   ```prompt
+   Stop any dev server running from this project folder. Then switch to the
+   main branch, pull the latest changes from GitHub, run npm ci, and run npm test.
+   Show me each command's output, then show git log --oneline -3.
    ```
 
-5. **Verify:** `git log --oneline -3` shows the merged feature, and tests pass.
+5. **Verify:** the last three commits Copilot shows include the merged feature, and tests pass.
 
 ## Common issues
 
 - **CI fails but everything passes on my computer:** read the first red line of the failed step on the **Actions** tab. Common causes: `package-lock.json` not committed; a file name that differs only by capital letters (Linux is case-sensitive, Windows usually is not); or a test that depends on your local data.
-- **`npm ci` fails with `EPERM` or `EBUSY` on Windows:** a running dev server or another terminal is using files in `node_modules`. Stop it with **Ctrl+C**, then run `npm ci` again. Do not delete folders by hand.
+- **`npm ci` fails with `EPERM` or `EBUSY` on Windows:** a running dev server or another process is using files in `node_modules`. Ask Copilot to stop the dev server it started and run `npm ci` again. Do not delete folders by hand.
 - **The workflow never runs:** check that the file is exactly `.github/workflows/ci.yml` and was pushed. Check the branch name under `push:`. In some organizations, Actions must be enabled by an administrator.
 - **`/pr-open` or My work is not available:** make sure the project is connected to the GitHub repository and you are signed in. Type `/` to see commands your version offers.
-- **Push rejected:** someone (or another session) pushed first. Run `git pull`, rerun the tests, then push again. Ask Copilot to explain any merge conflict before resolving it.
+- **Push rejected:** someone (or another session) pushed first. Ask Copilot to pull the latest changes, rerun the tests, then push again. Ask it to explain any merge conflict before resolving it.
 - **I published the wrong folder:** on GitHub, open the repository's **Settings**, check the files, and delete the repository if needed. Then start Step 2 again from the right folder.
 
 ## Verification and summary

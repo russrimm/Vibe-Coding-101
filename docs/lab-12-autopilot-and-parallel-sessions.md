@@ -92,13 +92,14 @@ Never merge Autopilot's work because it said "done."
    /review
    ```
 
-3. Run the checks yourself in the session's terminal and confirm each prints `Tests ... passed` or exits with 0:
+3. Ask for fresh evidence rather than trusting Autopilot's summary. **Copilot chat:**
 
-   ```terminal
-   npm test
-   npm run lint
-   npm run build
+   ```prompt
+   Run npm test, npm run lint, and npm run build in this session, one at a time.
+   Show me the full output and exit code of each. Do not change any files.
    ```
+
+   **Expected:** tests report `Tests ... passed`, and all three commands exit with code 0.
 
 4. Open the preview. Type a search, choose **Done**, then press **Clear filters** with the mouse and again with the keyboard (Tab to it, press Enter). Both must reset the search and the filter.
 5. If everything is good, commit and open a pull request, as in Lab 11. Let CI confirm it.
