@@ -11,7 +11,8 @@ export function checkToolVersion(tool: SetupTool, output: string): SetupCheck {
   if (!value)
     return {
       matches: false,
-      message: 'Run the command and paste its output, not the command itself.',
+      message:
+        'Ask Copilot to run the command and paste its output, not the command itself.',
     }
   if (tool === 'node') {
     const match = /^v(\d+)\.\d+\.\d+$/.exec(value)
@@ -19,7 +20,7 @@ export function checkToolVersion(tool: SetupTool, output: string): SetupCheck {
       return {
         matches: false,
         message:
-          'Expected a Node version such as v24.19.0. If the command failed, reopen the terminal after installing Node.js.',
+          'Expected a Node version such as v24.19.0. If the command failed, restart the Copilot app after installing Node.js and ask it to check again.',
       }
     if (Number(match[1]) !== 24)
       return {
@@ -43,7 +44,7 @@ export function checkToolVersion(tool: SetupTool, output: string): SetupCheck {
       : {
           matches: false,
           message:
-            'Expected only a version number, such as 11.17.0. On Windows, try npm.cmd --version if npm.ps1 is blocked; do not weaken execution policy.',
+            'Expected only a version number, such as 11.17.0. On Windows, if npm.ps1 is blocked, ask Copilot to use npm.cmd --version; do not weaken execution policy.',
         }
   }
   return /^git version \d+\.\d+(?:\.\d+)?(?:\.windows\.\d+| \(Apple Git-[\d.]+\))?$/.test(
@@ -57,6 +58,6 @@ export function checkToolVersion(tool: SetupTool, output: string): SetupCheck {
     : {
         matches: false,
         message:
-          'Expected output starting with git version, such as git version 2.50.1. Reopen the terminal after the approved Git installation.',
+          'Expected output starting with git version, such as git version 2.50.1. Restart the Copilot app after the approved Git installation and ask it to check again.',
       }
 }

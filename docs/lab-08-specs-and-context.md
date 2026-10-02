@@ -17,14 +17,14 @@ In Level 1 you typed each request into chat. That works for tiny changes, but ch
 
 In this lab you write a spec for one new feature: **rename a record**. You will build it in [Lab 09](lab-09-tests-as-guardrails.md).
 
-Open your learner project in the **GitHub Copilot desktop app**. Make sure your last commit is saved:
+Open your learner project in the **GitHub Copilot desktop app**. Make sure your last commit is saved. **Copilot chat:**
 
-```terminal
-git status --short
-git log -1 --oneline
+```prompt
+Show me git status --short and the latest commit (git log -1 --oneline)
+for this learner project. Do not change anything.
 ```
 
-**Expected:** `git status --short` prints nothing, and `git log` shows your last commit. If files are listed, finish or commit that work first.
+**Expected:** Copilot reports no changed files, and shows your last commit. If files are listed, finish or commit that work first.
 
 ## Step 1: Brainstorm in a chat, not a session
 
@@ -165,11 +165,7 @@ The app includes a built-in **rubber duck** agent. It reviews your plan using a 
    ```
 
 3. Approve the commit after reading the diff.
-4. **Verify:**
-
-   ```terminal
-   git log -1 --oneline
-   ```
+4. **Verify:** ask Copilot, "Show me the latest commit with git log -1 --oneline."
 
    **Expected:** your newest commit says `docs: add rename spec`.
 

@@ -12,7 +12,7 @@
 
 1. Open **Store Inventory Practice** at the actual local preview URL.
 2. Show the sample list, rejected blank input, status change, combined search/filter, and a successful refresh.
-3. Show your two successful command results and the local commit ID. If you closed that terminal, ask Copilot to run `git log -1 --oneline` in your learner workspace. **Expected:** one line that starts with a short commit ID, followed by your commit message.
+3. Show your two successful command results and the local commit ID. If you lost track of them, ask Copilot: "Show me the latest commit in this learner workspace with git log -1 --oneline." **Expected:** one line that starts with a short commit ID, followed by your commit message.
 4. Explain one change you reviewed or one problem you fixed. If no fix was needed, describe why the empty-name test matters.
 
 ## Step 2: Describe completion honestly
@@ -25,7 +25,7 @@
 ## Step 3: Keep enough information to return
 
 1. Record the desktop project/session name, actual workspace path, branch, commit ID, and preview origin.
-2. Record how to restart: reopen that session and run `npm run dev` there. Follow the newly printed URL.
+2. Record how to restart: reopen that session and ask Copilot, "Start the dev server for this app and show me the Local URL." Follow the newly reported URL.
 3. Understand the difference:
    - **Files** are your app's source code.
    - **A commit** is a local code snapshot, not an off-device backup.

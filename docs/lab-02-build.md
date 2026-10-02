@@ -12,26 +12,31 @@
 ## Step 1: Create only the first page
 
 1. Check that the current desktop session still points to your learner workspace. Review your plan, then select **Interactive** in the mode dropdown below the prompt field so you can check each increment before the next one.
-2. Review the following **terminal commands**. Run them only in the new learner workspace, with no existing app files. Ask Copilot to run these exact commands there, or run them yourself in a terminal opened at that path—**not both**:
+2. Ask Copilot to create the starter project for you. You do not type any commands; Copilot runs them and shows you the output. **Copilot chat:**
 
-   ```terminal
+   ```prompt
+   Create a React + TypeScript starter app in this session's working directory.
+   First confirm the directory is my empty learner folder (Git metadata is fine).
+   If it contains another app or unexpected files, stop and tell me.
+   Use the pinned, rehearsed generator with exactly this command, keeping "." as the target:
    npm exec --yes --package=create-vite@8.3.0 -- create-vite . --template react-ts --no-interactive --no-rolldown
-   npm install
-   npm run build
-   npm run lint
+   Then run npm install, npm run build, and npm run lint, one at a time.
+   Show me each command's output and exit code. Do not overwrite or delete files,
+   upgrade packages, or change any settings. If a command fails, stop and show me
+   the first error instead of trying fixes.
    ```
 
-3. **What these do:** the first command downloads/runs the pinned `create-vite` generator and creates its React/TypeScript starter in the current directory (`.`). `--yes` authorizes that npm package prompt only; it is **not** permission for unrestricted Copilot actions. `--no-interactive` avoids generator questions, and `--no-rolldown` selects standard Vite rather than the experimental option. There is deliberately no overwrite flag. Keep `.` as the target—do not replace it with an absolute Windows path; some configured npm shells alter backslashes in those arguments.
-4. `npm install` downloads the starter's dependencies and creates a lockfile. The next two commands check the untouched starter before you change it. **Expected:** the generator reports the project location, installation finishes, build creates `dist`, and build/lint each exit with code **0**. Package counts and timings vary. If anything fails, stop and use the recovery prompt below; do not delete existing files or disable checks.
+3. **What Copilot is doing:** the first command downloads and runs a starter generator called `create-vite`, pinned to the exact version this lab was tested with. It creates a React/TypeScript starter in the current folder (`.`). Copilot will ask your permission first, because it downloads code from the internet. That is expected; approve it only if the command matches the prompt. The extra options skip the generator's questions and pick standard Vite. `--yes` only answers npm's own "download this package?" question; it does not give Copilot any extra permissions. There is deliberately no overwrite option.
+4. `npm install` downloads the starter's dependencies and creates a **lockfile** (a list of the exact package versions). The build and lint checks prove the untouched starter works before you change it. **Expected:** Copilot reports the project was created, installation finished, build created a `dist` folder, and build and lint each finished with exit code **0**. Package counts and timings vary. If anything fails, stop and use the recovery prompt below; do not let Copilot delete existing files or disable checks.
 
-   > **Yellow `npm warn allow-scripts` lines?** Newer npm versions (11.16 and later) warn when a package wants to run an install script, for example `esbuild`. In our 2026-10-02 rehearsal with npm 11.17.0 this was only a notice: install, build, and lint all still succeeded. Do not run `npm approve-scripts` or change npm settings just to silence it. Ask Copilot to explain the message if you are curious.
-5. **Verify:** the workspace contains `package.json`, `package-lock.json`, `index.html`, and a `src` folder. Its scripts are `dev` (`vite`), `build` (`tsc -b && vite build`), `lint` (`eslint .`), and `preview` (`vite preview`). Use the starter's existing `npm run lint`; do not add another lint tool.
+   > **Yellow `npm warn allow-scripts` lines?** Newer npm versions (11.16 and later) warn when a package wants to run an install script, for example `esbuild`. In our 2026-10-02 rehearsal with npm 11.17.0 this was only a notice: install, build, and lint all still succeeded. Do not let Copilot run `npm approve-scripts` or change npm settings just to silence it. Ask Copilot to explain the message if you are curious.
+5. **Verify:** ask Copilot, "List the files in this folder and the scripts in package.json." You should see `package.json`, `package-lock.json`, `index.html`, and a `src` folder. The scripts are `dev` (`vite`), `build` (`tsc -b && vite build`), `lint` (`eslint .`), and `preview` (`vite preview`). Use the starter's existing `npm run lint`; do not add another lint tool.
 6. Now use this **chat prompt** to make the first small change:
 
    ```prompt
    Implement only increment 1 of our agreed Store Inventory Practice plan.
    First confirm the current workspace and inspect any existing files.
-   I just created the React/TypeScript starter with create-vite 8.3.0.
+   We just created the React/TypeScript starter with create-vite 8.3.0.
    Confirm it is that starter. If it contains another app or unexpected work,
    stop and report it; do not overwrite it or run the scaffold again.
    Show the installed React, TypeScript, and Vite versions.
@@ -47,7 +52,7 @@
 
 7. Review the file-write requests before allowing them. Keep all four real scripts; do not accept replacements that always report success.
 
-> The generator is pinned to the rehearsed version, not claimed to be the latest. Its React/TypeScript template uses TypeScript 5 and ESLint and supports the Node.js 24 lab baseline. This separate learner app need not use the portal repository's older Vite version. Dependency ranges still resolve during the first install: record the installed versions and keep the resulting lockfile. Use `npm ci` for later reinstalls. Pinning the generator alone does not freeze every dependency or make the AI-generated features identical.
+> The generator is pinned to the rehearsed version, not claimed to be the latest. Its React/TypeScript template uses TypeScript 5 and ESLint and supports the Node.js 24 lab baseline. This separate learner app need not use the portal repository's older Vite version. Dependency ranges still resolve during the first install: record the installed versions and keep the resulting lockfile. For later reinstalls, ask Copilot to use `npm ci`, which installs exactly what the lockfile lists. Pinning the generator alone does not freeze every dependency or make the AI-generated features identical.
 
 ## Step 2: Start and inspect the preview
 
@@ -74,7 +79,7 @@
    ![The untouched create-vite starter page with Vite and React logos, a "Vite + React" heading, and a "count is 0" button](images/lab-02-starter.png)
 
    *Retail example: the untouched starter page. Seeing this after increment 1 means the change did not apply.*
-5. Keep the server session alive. If you choose to run it yourself, type `/terminal` in the active desktop session to open its right-panel terminal. Verify the **actual session workspace**, run `npm run dev`, and leave that terminal open. Use a second terminal for later commands.
+5. Keep the server running while you test. Copilot runs it in the background, so you can keep sending prompts in the same session. If the page stops loading later, ask: "Is the dev server still running? If not, start it again in this workspace and show me the Local URL."
 
 ## Step 3: Add a record
 
@@ -159,12 +164,12 @@
 
    *Retail example: after refreshing the page in our rehearsal. Three records, no duplicates, and the added record kept In progress.*
 
-5. Run `npm run lint` again. In our rehearsal, a common AI-generated pattern (saving inside a React `useEffect` that also sets state) **failed lint** with `react-hooks/set-state-in-effect`, even though the page worked. If you see that rule, ask Copilot to save in the same event handler that changes the records instead of in an effect. Do not disable the rule. [Lab 10](lab-10-debug-and-recover.md) explains this real error in detail.
+5. Ask Copilot: "Run npm run lint again and show me the output and exit code." In our rehearsal, a common AI-generated pattern (saving inside a React `useEffect` that also sets state) **failed lint** with `react-hooks/set-state-in-effect`, even though the page worked. If you see that rule, ask Copilot to save in the same event handler that changes the records instead of in an effect. Do not disable the rule. [Lab 10](lab-10-debug-and-recover.md) explains this real error in detail.
 6. Notice the storage limit: this data belongs to one browser profile and one **origin** (scheme, host, and port). Another browser, `127.0.0.1` instead of `localhost`, or a different port has different storage. Clearing site data or ending a private-browsing session can remove it. It is not shared across devices and is not protected storage for secrets.
 
 ## Step 6: Recover from a failure without rebuilding everything
 
-1. Copy the exact error from the failing command or describe the browser behavior. Remove private paths or secrets before sharing.
+1. Copy the exact error Copilot showed you, or describe the browser behavior. Remove private paths or secrets before sharing.
 2. **Chat prompt — replace the bracketed parts:**
 
    ```prompt
@@ -185,11 +190,11 @@
 
 ## Common issues
 
-- **Wrong page:** check the exact Vite URL; you may be viewing the portal.
-- **Connection refused:** the dev server stopped. Restart it in the same workspace and read its current URL.
-- **Port occupied:** use another local port without killing someone else's process. Expect separate browser storage at the new origin.
-- **Missing script:** show Copilot `package.json` and the error; request only the missing real script.
-- **Missing package:** first check the folder. For an existing unchanged lockfile, `npm ci` restores the recorded dependency tree; it replaces `node_modules`, so review before running it. Do not delete the lockfile as a general fix.
+- **Wrong page:** check the exact Vite URL Copilot reported; you may be viewing the portal.
+- **Connection refused:** the dev server stopped. Ask Copilot to restart it in the same workspace and show the current URL.
+- **Port occupied:** ask Copilot to use another local port without stopping someone else's app. Expect separate browser storage at the new origin.
+- **Missing script:** ask Copilot to show `package.json` and the error, and to restore only the missing real script.
+- **Missing package:** ask Copilot to check the folder first. For an existing, unchanged lockfile, it can run `npm ci` to restore the recorded packages; that replaces the `node_modules` folder, so have it explain before running. Do not let it delete the lockfile as a general fix.
 
 ## Verification and summary
 

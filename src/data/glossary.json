@@ -541,8 +541,8 @@
   "terminal": {
     "term": "Terminal",
     "emoji": "⌨️",
-    "definition": "A text window that runs commands on your computer. It is different from Copilot chat and your web browser.",
-    "example": "Use PowerShell on Windows, Terminal on macOS, or /terminal in an active desktop session, then run node --version.",
+    "definition": "A text window that runs commands on your computer. It is different from Copilot chat and your web browser. In these labs, Copilot runs the commands for you and shows the output.",
+    "example": "Ask Copilot to run node --version; it runs the command in its terminal and shows you the result.",
     "learnMore": ""
   },
   "prompt": {

@@ -74,7 +74,7 @@ The portal is the guide. It is **not** the app you build. Keep it in one browser
 
 *Reading one step at a time. **Show full lesson** brings back every step. Reading position is not a completion score.*
 
-Inside each step, every code box says where its text goes: **Copilot chat**, a **terminal**, or a **file**. Use its **Copy** button instead of retyping.
+Inside each step, every code box says what to do with its text: send it as a **Copilot chat** message, read it as **example output**, or have Copilot save it as **file content**. You never type commands yourself; Copilot runs them and shows you the results. Use the **Copy** button instead of retyping.
 
 **Look up words without leaving the page.** Words with a dotted underline have a plain-English explanation. Hover, tab to them, or tap them.
 

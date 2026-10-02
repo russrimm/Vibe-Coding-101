@@ -109,7 +109,7 @@ This lab uses **Microsoft Learn MCP**, a public documentation service. It lets C
 3. Restart the session with `/restart-session` if needed, then inspect the available server/tools again.
 4. **Verify:** the practice server is disabled or absent. Ask Copilot to list available tools without running them; do not accept another successful tool call under the removed server's name.
 5. The local app should still run as before. Removing this AI tool connection does not remove your React app, its sample records, or its local commit.
-6. A session restart may stop a preview server that the session was running. If the preview no longer loads, run `npm run dev` in the same learner workspace and reopen its printed Local URL. Do not scaffold the app again.
+6. A session restart may stop a preview server that the session was running. If the preview no longer loads, ask Copilot to start the dev server again in the same learner workspace and reopen the Local URL it reports. Do not scaffold the app again.
 
 ## Common issues and troubleshooting
 

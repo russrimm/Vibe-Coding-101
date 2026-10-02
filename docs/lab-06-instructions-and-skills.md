@@ -70,7 +70,7 @@ None of these is proof of correctness or a reason to approve every tool request.
    Do not install tools, add scripts, or change global settings.
    ```
 
-4. Once Copilot confirms the path is safe, send the **entire file content** below. This is Markdown to save, **not a terminal command**. The two `---` lines enclose **YAML frontmatter**: a small block of settings naming and describing the skill.
+4. Once Copilot confirms the path is safe, send the **entire file content** below as a chat message so Copilot can save it. This is Markdown to save, **not a command**. The two `---` lines enclose **YAML frontmatter**: a small block of settings naming and describing the skill.
 
    ```markdown
    ---

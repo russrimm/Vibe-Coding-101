@@ -4,7 +4,7 @@
 
 ## What you will learn
 
-- Find the real error message in the terminal, the browser, the error overlay, and test output.
+- Find the real error message in the dev server output, the browser, the error overlay, and test output.
 - Write a bug report that gets a small, correct fix instead of a rewrite.
 - Fix a real lint error the right way, without turning rules off.
 - Use Git to see exactly what changed and to undo just one file.
@@ -22,10 +22,10 @@ Errors appear in four places. Learn to check all four.
 
 | Where | What it looks like | How to see it |
 | --- | --- | --- |
-| **Terminal running `npm run dev`** | Red text after you save a file | Look at the terminal where the dev server runs |
+| **Dev server output** (from `npm run dev`) | Red text after a file changes | Ask Copilot: "Show me the latest output from the dev server." |
 | **Error overlay in the browser** | A dark panel over your app with red text | Appears automatically for code that cannot compile |
 | **Browser console** | Red messages in developer tools | Press **F12** (Windows) or **Option+Command+I** (Mac), then open **Console** |
-| **Test, build, or lint output** | `FAIL`, `error`, or a nonzero exit code | Run `npm test`, `npm run build`, or `npm run lint` |
+| **Test, build, or lint output** | `FAIL`, `error`, or a nonzero exit code | Ask Copilot to run `npm test`, `npm run build`, or `npm run lint` and show the output |
 
 Here is the error overlay we saw during our rehearsal after a mistyped closing tag:
 
@@ -116,31 +116,28 @@ Tests only check what they were told to check. In our rehearsal, all 10 tests pa
 
 When "it worked ten minutes ago," Git can show exactly what changed since.
 
-1. **Terminal — run one line at a time and read each result:**
+1. **Copilot chat:**
 
-   ```terminal
-   git status --short
-   git diff --stat
-   git log --oneline -5
+   ```prompt
+   Run these Git commands one at a time and show me each output:
+   git status --short, git diff --stat, and git log --oneline -5.
+   Then explain each result in plain language. Do not change anything.
    ```
 
 2. **What each tells you:**
    - `git status --short`: files changed since your last commit. `M` means modified, `??` means new and untracked.
    - `git diff --stat`: how many lines changed in each file. A surprise file is a clue.
    - `git log --oneline -5`: your last five commits, newest first. The short code at the start is the commit ID.
-3. To see what the last commit changed:
+3. To see what the last commit changed, ask: "Show me what the last commit changed with git show --stat HEAD."
+4. To undo uncommitted changes to **one file** you are sure about, **Copilot chat:**
 
-   ```terminal
-   git show --stat HEAD
+   ```prompt
+   First show me git diff -- src/App.tsx so I can read what I would lose.
+   Wait for my approval. Then restore only that file with
+   git restore -- src/App.tsx and show git status --short.
    ```
 
-4. To undo uncommitted changes to **one file** you are sure about:
-
-   ```terminal
-   git restore -- src/App.tsx
-   ```
-
-   ⚠️ This permanently discards uncommitted edits to that file. Run `git diff -- src/App.tsx` first and read what you will lose. Never run a broad reset such as `git reset --hard` because an AI suggested it. Ask what it will delete first.
+   ⚠️ Restoring a file permanently discards its uncommitted edits. Read the diff before you approve. Never approve a broad reset such as `git reset --hard` just because an AI suggested it. Ask what it will delete first.
 
 5. **Copilot chat** to get help reading a diff:
 
@@ -183,11 +180,11 @@ You are in a loop if the same error returns after two or three "fixes," or if ea
 
 ## Common issues
 
-- **The browser shows a blank white page:** open the browser console (Step 1). A runtime error is usually there, even when the terminal looks fine.
-- **The error overlay will not go away:** fix the file it names and save. The overlay clears automatically when the code compiles again.
-- **`git restore` says the path did not match:** check the exact path with `git status --short` and copy it from there.
+- **The browser shows a blank white page:** open the browser console (Step 1). A runtime error is usually there, even when the dev server output looks fine.
+- **The error overlay will not go away:** ask Copilot to fix the file it names. The overlay clears automatically when the code compiles again.
+- **Restoring a file says the path did not match:** ask Copilot to show `git status --short` and use the exact path from there.
 - **Copilot says "fixed" but the bug is still there:** run the reproduction steps yourself. A summary is not proof.
-- **`/fork` or `/merge-to-parent` is not available:** type `/` to see your version's commands. As an alternative, commit, try approach A, record the result, then use `git restore` and try approach B.
+- **`/fork` or `/merge-to-parent` is not available:** type `/` to see your version's commands. As an alternative, commit, try approach A, record the result, then ask Copilot to restore the changed files and try approach B.
 
 ## Verification and summary
 

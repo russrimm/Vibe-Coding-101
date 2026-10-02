@@ -1,5 +1,16 @@
 # Beginner curriculum review
 
+## Prompt-driven steps: learners never type commands — 2026-10-02
+
+**Goal:** the learner only tells Copilot what they want. Copilot runs every command (installs, scaffold, dev server, build/lint/test, Git) and shows the output; the learner approves actions and checks results in the browser.
+
+- Every `terminal`, `powershell`, and `bash` code block in `docs/lab-*.md` was replaced with a **Copilot chat** prompt or an inline "ask Copilot" instruction. A documentation test now fails if a lab module adds a learner-run command block again.
+- **Lab 00** was reordered: understand the three places → install and sign in to the Copilot app → learner folder and session → safe permissions → **Step 5: Check Node.js, npm, and Git**, where Copilot runs the version checks and, with approval, proposes an official install (for example winget or Homebrew). The Windows/macOS installer steps remain as a click-through fallback under **If Copilot cannot install a tool**. The "first harmless terminal command" exercise became **How you will work in every lab**.
+- Lab 02 (scaffold, dev server, lint), Lab 03 (build/lint exit codes, change review, Git identity, commit check), Lab 04, Lab 07, Lab 08, Lab 09 (test runs, deliberate bug and restore), Lab 10 (Git inspection and single-file restore), Lab 11 (branch rename, publishing, stopping the dev server, merge pull), Lab 12, and Lab 13 now route commands through Copilot. Ctrl+C instructions became "ask Copilot to stop the dev server."
+- The playbook, learning-path overview, README, glossaries, checklist details, and the tool-output helper text were updated to match. Exact commands still appear inside prompts so Copilot runs the rehearsed versions.
+
+**Not performed:** a new desktop-app rehearsal of the Copilot-run install route (winget/Homebrew) or of a session-run Git identity change.
+
 ## Learning path, rehearsal screenshots, and Levels 2–3 — 2026-10-02
 
 **Goal:** extend the course from a single beginner lab into a beginner → intermediate → advanced path, with screenshots wherever they can be captured accurately, and re-verify claims along the way.
