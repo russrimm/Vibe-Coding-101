@@ -6,6 +6,7 @@
 
 - **Lab 00** gained **Find your way around the app**: a sidebar map (**New**, **Projects**, **Chats**, **My work**, **Automations**, **Customize**, **Search**) and the mode, model (**Auto**), and **Changes** controls, plus **Help → Keyboard Shortcuts**. Sign-in now states that GitHub Enterprise Server is not supported and that **Use GitHub Enterprise** means Enterprise Cloud with data residency (`*.ghe.com`). The bring-your-own-provider note links to the official guide. The session step tells learners to leave the model on **Auto**.
 - **Lab 07** mentions `/af` (Agent Finder) with a caution to inspect results. **Lab 12** adds `/orchestrate` and `/pr-stack` to the parallel-work table. **Lab 13** adds an optional `/create-canvas` exercise (personal scope, no packages).
+- The retired bookmark stubs `docs/Lab00-WelcomeToTheFuture.md` ("this introduction has moved") and `docs/Lab01-ChooseYourVibe.md` ("this guide has moved") were deleted. Nothing linked to them; [Lab 00](lab-00-prerequisites.md) and [use cases](use-cases.md) replace them.
 - Both glossaries gained **Canvas**, **Chat (vs. session)** / **Agent Finder**.
 - **Unchanged and re-confirmed:** Add project from → Local folder or repository, **Changes**, **Create PR**, **PR**, session modes, `/review`, `/security-review`, `/rubber-duck`, `/pr-*` commands, `/sandbox`, `/fork`, `/spawn`, `/fleet`, `/usage`, `/chronicle`.
 
@@ -195,7 +196,7 @@ Changed/new files in this curriculum scope:
 - Root: `README.md`, `GLOSSARY.md`.
 - Canonical modules: `docs/lab-00-prerequisites.md`, `docs/lab-01-plan.md`, `docs/lab-02-build.md`, `docs/lab-03-test-and-save.md`, `docs/lab-04-completion.md`, `docs/lab-05-next-steps.md`.
 - Supporting documents: `docs/use-cases.md`, `docs/lab-review.md`.
-- Retained older paths: `docs/Lab00-WelcomeToTheFuture.md`, `docs/Lab01-ChooseYourVibe.md`, `docs/Lab02-SetupMac.md`, `docs/Lab04-EnterpriseGraphMCP.md`, `docs/Lab05-UniversalGraphComponents.md`, `docs/Lab09-DeployToAzure.md`, `docs/Bonus-AzureOpenAIChatbot.md`, `docs/Bonus-ServiceHealthPortal.md`.
+- Retained older paths: `docs/Lab02-SetupMac.md`, `docs/Lab04-EnterpriseGraphMCP.md`, `docs/Lab05-UniversalGraphComponents.md`, `docs/Lab09-DeployToAzure.md`, `docs/Bonus-AzureOpenAIChatbot.md`, `docs/Bonus-ServiceHealthPortal.md`.
 - Stage components: `src/components/steps/SetupStep.tsx`, `src/components/steps/StructureStep.tsx`, `src/components/steps/TestingStep.tsx`, `src/components/steps/CompletionStep.tsx`, `src/components/steps/WhatsNextStep.tsx`, `src/components/steps/ComponentsStep.tsx`, `src/components/steps/DataStep.tsx`, new `src/components/steps/CurriculumStage.tsx`.
 - Curriculum data: `src/data/curriculum.ts`, `src/data/wizardChecklist.ts`, `src/data/glossary.json`, `src/types/industry.ts`.
 
