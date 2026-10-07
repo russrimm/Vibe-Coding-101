@@ -1,5 +1,16 @@
 # Beginner curriculum review
 
+## Copilot app refresh — 2026-10-07
+
+**Goal:** re-verify the course against the current GitHub Copilot app documentation (quickstart, agent sessions, slash commands, built-in skills, canvas extensions) and close gaps.
+
+- **Lab 00** gained **Find your way around the app**: a sidebar map (**New**, **Projects**, **Chats**, **My work**, **Automations**, **Customize**, **Search**) and the mode, model (**Auto**), and **Changes** controls, plus **Help → Keyboard Shortcuts**. Sign-in now states that GitHub Enterprise Server is not supported and that **Use GitHub Enterprise** means Enterprise Cloud with data residency (`*.ghe.com`). The bring-your-own-provider note links to the official guide. The session step tells learners to leave the model on **Auto**.
+- **Lab 07** mentions `/af` (Agent Finder) with a caution to inspect results. **Lab 12** adds `/orchestrate` and `/pr-stack` to the parallel-work table. **Lab 13** adds an optional `/create-canvas` exercise (personal scope, no packages).
+- Both glossaries gained **Canvas**, **Chat (vs. session)** / **Agent Finder**.
+- **Unchanged and re-confirmed:** Add project from → Local folder or repository, **Changes**, **Create PR**, **PR**, session modes, `/review`, `/security-review`, `/rubber-duck`, `/pr-*` commands, `/sandbox`, `/fork`, `/spawn`, `/fleet`, `/usage`, `/chronicle`.
+
+**Not performed:** a new rehearsal inside the desktop app; `/create-canvas`, `/af`, `/orchestrate`, and `/pr-stack` were taken from the documentation only.
+
 ## Prompt-driven steps: learners never type commands — 2026-10-02
 
 **Goal:** the learner only tells Copilot what they want. Copilot runs every command (installs, scaffold, dev server, build/lint/test, Git) and shows the output; the learner approves actions and checks results in the browser.

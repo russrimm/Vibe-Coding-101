@@ -115,5 +115,8 @@ In the portal, dotted-underlined words also have definitions on hover, keyboard 
 - **Fork (session):** `/fork` copies the current Copilot session so you can try another approach. This is different from forking a GitHub repository.
 - **Agent profile (`.agent.md`):** the Markdown file that defines a custom agent: a description, instructions, and an optional `tools` list. [Lab 13](docs/lab-13-custom-agents-and-automations.md) creates a read-only one.
 - **Automation:** a saved prompt in the Copilot app that runs manually, on a schedule, or when issues or pull requests change. Each run uses your plan's allowance.
+- **Canvas:** a shared work surface in the Copilot app's right side panel, such as a checklist or board, that you and Copilot can both change. Browse them under **Customize → Canvas**; `/create-canvas` builds one. [Lab 13](docs/lab-13-custom-agents-and-automations.md) has an optional exercise.
+- **Chat (vs. session):** a **Chat** is for questions and ideas and creates no branch or working tree. A **session** works inside a project and can change its files.
+- **Agent Finder (`/af`):** a built-in skill that searches for installable MCP servers, tools, skills, and agents. Inspect anything it finds before installing.
 
 **Next:** [Start Lab 00](docs/lab-00-prerequisites.md).

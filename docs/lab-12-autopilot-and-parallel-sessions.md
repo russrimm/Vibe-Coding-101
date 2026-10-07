@@ -123,6 +123,8 @@ Each session runs in its own isolated workspace, so you can work on several task
 | `/fork` | Copies the current session at its latest turn | Try two approaches to the same problem |
 | `/spawn [PROMPT]` | Creates a focused child session for delegated work | Hand off a side task without losing your place |
 | `/fleet [PROMPT]` | Launches multiple agents in parallel for one task | Large tasks that split cleanly into parts; use only after you are comfortable reviewing many changes |
+| `/orchestrate [PROMPT]` | A built-in skill that coordinates work across sessions or repositories by creating and guiding child sessions | A larger goal that needs several coordinated sessions; start with a small, written plan |
+| `/pr-stack` | A built-in skill that builds a stack of dependent pull requests, one child session per layer | Reviewing a big change as small, ordered pull requests |
 
 ⚠️ **Parallel work multiplies review.** Two sessions mean two sets of changes to read. Start with two, not ten.
 
@@ -155,6 +157,6 @@ You are done when you completed the readiness checklist, ran one Autopilot task 
 
 **What you learned:** Autopilot is only as safe as the guardrails around it. Specs, tests, CI, commits, sandboxing, and your own review let an agent work independently without losing control.
 
-**Source check:** 2026-10-02. Session modes, working trees, parallel sessions, models, and sandboxing follow GitHub's [agent sessions guide](https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions), [local sandboxing guide](https://docs.github.com/en/copilot/how-tos/github-copilot-app/configure-local-sandboxing), and [about cloud and local sandboxes](https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes). Commands follow the [slash command reference](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/slash-commands). Sandboxing is in public preview; this course did not test it on every operating system.
+**Source check:** 2026-10-07. Session modes, working trees, parallel sessions, models, and sandboxing follow GitHub's [agent sessions guide](https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions), [built-in skills](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/built-in-skills), [local sandboxing guide](https://docs.github.com/en/copilot/how-tos/github-copilot-app/configure-local-sandboxing), and [about cloud and local sandboxes](https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes). Commands follow the [slash command reference](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/slash-commands). Sandboxing is in public preview; this course did not test it on every operating system.
 
 **Next:** [Lab 13: Custom agents, automations, and your capstone](lab-13-custom-agents-and-automations.md).

@@ -102,6 +102,22 @@ The key advantage of a custom agent is the `tools` list. A reviewer that physica
 
 **Before you schedule anything:** automations can also run **hourly**, **daily**, **weekly**, on a **CRON** schedule, or when issues or pull requests change. Cloud automations can run while your computer is off and can be given tools such as pushing changes or creating pull requests. Each run uses your plan's allowance, and each tool you grant is something it can do without asking. Start with manual, read-only automations, and grant only the tools a task truly needs.
 
+### Optional: try a canvas
+
+A **canvas** is a shared work surface that opens in the app's right side panel, such as a checklist, a board, or a document. You and Copilot can both change it, so you can steer visible work instead of describing every change in chat.
+
+1. Open **Customize** in the sidebar, then **Canvas**, to browse featured canvases. Some need a plugin; install one only if you recognize its publisher and your organization allows it.
+2. To build your own, open a session and send this **Copilot chat** prompt:
+
+   ```prompt
+   /create-canvas Create a simple checklist canvas for my capstone's definition of done.
+   Let me check items off and add new items. Keep it personal to my computer, not shared
+   with a team repository. Do not install packages and do not change my app's source files.
+   ```
+
+3. **Expected:** Copilot asks about scope (choose **user** or personal, not project) and opens the canvas in the side panel. Review **Changes**; a personal canvas lives outside your project folder.
+4. **Verify:** check one item in the canvas, then ask Copilot "Which items are checked?" It should answer from the canvas. Skip this step if **Canvas** is missing; it is optional.
+
 ## Step 4: Plan your capstone
 
 You have used every major part of the workflow on a practice app. Now plan something **you** care about, using the same guardrails.
@@ -149,6 +165,6 @@ You are done when your learner project has a committed read-only custom agent th
 
 **What you learned:** instructions, skills, custom agents, and automations each encode a different kind of know-how. Limiting tools is a real safety boundary. And the same small loop — spec, test, build, review, save — scales from a two-record practice list to your own projects.
 
-**Source check:** 2026-10-02. Custom agent format and tool aliases follow [About custom agents](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents), [custom agents configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration), and [creating custom agents for Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli), which the app is built on. Automations follow [Using automations in the GitHub Copilot app](https://docs.github.com/en/copilot/how-tos/github-copilot-app/using-automations). This course did not run the automation or agent picker on every app version; labels may differ.
+**Source check:** 2026-10-07. Canvases follow [Working with canvas extensions in the GitHub Copilot app](https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions); this course did not test `/create-canvas` on every app version. Custom agent format and tool aliases follow [About custom agents](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents), [custom agents configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration), and [creating custom agents for Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli), which the app is built on. Automations follow [Using automations in the GitHub Copilot app](https://docs.github.com/en/copilot/how-tos/github-copilot-app/using-automations). This course did not run the automation or agent picker on every app version; labels may differ.
 
 **Next:** you have completed the learning path. 🎉 Keep the [vibe coding playbook](vibe-coding-playbook.md) open while you build your capstone, and revisit the [learning path](learning-path.md) whenever you want to sharpen one skill.
