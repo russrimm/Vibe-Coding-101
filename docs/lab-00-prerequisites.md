@@ -52,7 +52,23 @@ Keep the learning portal in one browser tab and your generated app in a second t
 
 > **Curious about the terminal?** In an active session, typing `/terminal` opens a terminal panel where you can watch or run commands. You never need it for these labs. If you do use it, check its folder first.
 
-**Checkpoint:** you can say which window gets a prompt and which gets a URL, and you know that Copilot runs the commands.
+### Find your way around the app
+
+After you sign in, the sidebar on the left is your map. You will use only the first few items in this course, but knowing the rest saves time later.
+
+| Sidebar item | What it is for | When you use it |
+| --- | --- | --- |
+| **New** | Starts a new agent session | Any time you want Copilot to work on a project |
+| **Projects** | Your connected folders and repositories, with their active sessions. The **+** beside a project starts a session | Lab 00 Step 3 and every lab after it |
+| **Chats** | Questions and brainstorming that do not need a project, branch, or working tree | Lab 00 Step 2, Lab 08 |
+| **My work** | Your GitHub issues and pull requests, with CI status and reviews | Lab 11 |
+| **Automations** | Saved prompts that run on demand or on a schedule | Lab 13 |
+| **Customize** | Plugins, skills, MCP servers, and canvases (side-panel work surfaces) | Labs 06, 07, and 13 |
+| **Search** | Searches your repositories from inside the app | Optional |
+
+Inside a session, three controls sit near the prompt box. The **mode** dropdown sets how much freedom Copilot has (**Interactive**, **Plan**, or **Autopilot**). The **model** dropdown picks the AI model; leave it on **Auto** for this course, which lets the app choose a model that fits each task. **Changes** shows what Copilot edited. To see keyboard shortcuts, open the **Help** menu and choose **Keyboard Shortcuts**. Typing `/` in the prompt box lists the commands your version supports.
+
+**Checkpoint:** you can say which window gets a prompt and which gets a URL, you know that Copilot runs the commands, and you can point to **Projects**, **Chats**, and **Changes** in the app.
 
 ## Step 2: Install, sign in, and check Copilot
 
@@ -68,8 +84,8 @@ Keep the learning portal in one browser tab and your generated app in a second t
 
 1. Open the [official GitHub Copilot app download page](https://github.com/features/ai/github-app). Download the installer for your operating system; official versioned packages are also available from [GitHub's app releases](https://github.com/github/app/releases).
 2. Open the downloaded installer and follow your operating system's installation prompts. Use your organization's approved software process if required. If you already have the app, open it and check the installed version instead.
-3. Click **Sign in to GitHub**. Complete sign-in on the expected service's sign-in page and return to the app. Use **Use GitHub Enterprise** only if your organization uses that option. Never paste a password, access token, recovery code, or secret into chat.
-4. Confirm you have a Copilot plan, then finish onboarding. You can skip connecting recent repositories—we will add an empty local folder next. Bring-your-own-provider credentials are an alternative supported by the app, but are outside this beginner route.
+3. Click **Sign in to GitHub**. Complete sign-in on the expected service's sign-in page and return to the app. Use **Use GitHub Enterprise** only if your organization uses GitHub Enterprise Cloud with data residency; you then enter your `*.ghe.com` hostname. GitHub Enterprise Server is not supported by the app. Never paste a password, access token, recovery code, or secret into chat.
+4. Confirm you have a Copilot plan, then finish onboarding. You can skip connecting recent repositories—we will add an empty local folder next. If you have no Copilot plan, the app lets you sign up or continue with your own model provider. Using [your own provider](https://docs.github.com/en/copilot/how-tos/github-copilot-app/use-byok-models) needs an API key and is outside this beginner route.
 5. For a Business/Enterprise account, an administrator may need to check the separate **GitHub Copilot app** policy. The current app policy is separate from the CLI policy; installing the CLI does not resolve disabled app access.
 6. The app needs **Git** (a tool that tracks file changes) to work with project folders. If the installer or app says Git is missing, install it with the manual steps under **If Copilot cannot install a tool** in Step 5, restart the app, and come back here.
 7. Open **Chats** in the sidebar and start a conversation. **Chat prompt:**
@@ -82,7 +98,7 @@ Keep the learning portal in one browser tab and your generated app in a second t
 
 **Before you move on:** Git tracks your files; GitHub is the account/hosting service; GitHub Copilot is the AI helper. A GitHub sign-in alone does not prove Copilot works. The reply above is your check.
 
-> These labels were checked against the official documentation on 2026-09-26. Placement may differ in another app build. Consult the [current quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) if labels differ; do not switch to a similarly named Copilot product.
+> These labels were checked against the official documentation on 2026-10-07. Placement may differ in another app build. Consult the [current quickstart](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) if labels differ; do not switch to a similarly named Copilot product.
 
 ## Step 3: Make a dedicated learner folder and local session
 
@@ -91,7 +107,7 @@ Keep the learning portal in one browser tab and your generated app in a second t
 3. In the **Copilot desktop app** sidebar, click **+** next to **Projects**. Under **Add project from**, choose **Local folder or repository**. Select your new empty folder—not this `Vibe-Coding-101` portal repository.
 4. Under **Projects** in the sidebar, find your new learner project and click the **+** next to it to start a session.
 5. In the dropdown below the prompt box, choose a **local** execution location, not a cloud sandbox. The app may offer a new working tree or the local repository, depending on the project. Use one local session for this lab. Each session gets its own workspace, but a local-repository session edits your folder directly—so always check the actual workspace path the next prompt reports.
-6. Choose **Interactive** from the mode dropdown below the prompt field. **Chat prompt:**
+6. Choose **Interactive** from the mode dropdown below the prompt field. Leave the model dropdown on **Auto**. **Chat prompt:**
 
    ```prompt
    Before changing anything, report this session's actual working directory,
